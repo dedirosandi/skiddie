@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\backend\Project;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -17,21 +18,17 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $table = "users";
     protected $fillable = [
         'name',
         'username',
         'email',
         'password',
+        'as',
+        'description',
         'profile_picture'
     ];
 
-    public function uploadProfilePicture($image)
-    {
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('profile_pictures'), $imageName);
-        $this->profile_picture = $imageName;
-        $this->save();
-    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -51,4 +48,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class, 'project_users');
+    }
+
+   
 }

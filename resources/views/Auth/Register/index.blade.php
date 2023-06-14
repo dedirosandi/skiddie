@@ -64,6 +64,26 @@
                             @enderror
                         </div>
                         <div class="form-group mb-4">
+                            <input type="text" name="as"
+                                class="form-control form-control-xl @error('as')
+                            is-invalid
+                        @enderror"
+                                placeholder="Web Developer" required>
+                            @error('as')
+                                {{ $message }}
+                            @enderror
+                        </div>
+                        <div class="form-group mb-4">
+                            <input type="text" name="description"
+                                class="form-control form-control-xl @error('description')
+                            is-invalid
+                        @enderror"
+                                placeholder="Description" required>
+                            @error('description')
+                                {{ $message }}
+                            @enderror
+                        </div>
+                        <div class="form-group mb-4">
                             <input type="file" name="profile_picture"
                                 class="form-control form-control-xl @error('profile_picture')
                             is-invalid

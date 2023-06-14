@@ -11,7 +11,7 @@ class RegisterController extends Controller
     //Register
     public function index()
     {
-        return view('Auth.Register.index');
+        return view('auth.Register.index');
     }
 
     public function store(Request $request)
@@ -21,20 +21,16 @@ class RegisterController extends Controller
             'username' => 'required|min:3|max:255|unique:users',
             'email' => 'required|email:dns|unique:users',
             'password' => 'required|min:8|max:255',
-            'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif',
+            'as' => 'required',
+            'description' => 'required',
+            'profile_picture' => 'required|image',
         ]);
 
         $validasiDataRegister['password'] = bcrypt($validasiDataRegister['password']);
 
-        $user = User::Create($validasiDataRegister);
+        $validasiDataRegister['profile_picture'] = $request->file('profile_picture')->store('image/image-profile-picture');
+        User::create($validasiDataRegister);
 
-        if ($request->hasFile('profile_picture')) {
-            $profilePicture = $request->file('profile_picture');
-            $user->uploadProfilePicture($profilePicture);
-        }
-
-        $request->session()->flash('success', 'Registration Successfull, Please login');
-
-        return redirect('/login');
+        return redirect('/dashboard/team');
     }
 }

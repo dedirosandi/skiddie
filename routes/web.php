@@ -1,10 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\auth\LoginController;
+use App\Http\Controllers\auth\LogoutController;
+use App\Http\Controllers\backend\MainController;
+use App\Http\Controllers\backend\TeamController;
+use App\Http\Controllers\auth\RegisterController;
+use App\Http\Controllers\backend\ArticleController;
+use App\Http\Controllers\backend\ProjectController;
+use App\Http\Controllers\dashboard\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +33,10 @@ Route::get('/register', [RegisterController::class, 'index'])->middleware('guest
 Route::post('/register', [RegisterController::class, 'store']);
 
 // Dashboard
-Route::get('/dashboard', function () {
-    return view('Dashboard.index');
-})->middleware('auth');
+Route::get('/dashboard', [MainController::class, 'index'])->middleware('auth');
+Route::get('/dashboard/project/checkSlug', [ProjectController::class, 'checkSlug'])->middleware('auth');
+Route::get('/dashboard/article/checkSlug', [ArticleController::class, 'checkSlug'])->middleware('auth');
+
+Route::resource('/dashboard/team', TeamController::class)->middleware('auth');
+Route::resource('/dashboard/project', ProjectController::class)->middleware('auth');
+Route::resource('/dashboard/article', ArticleController::class)->middleware('auth');

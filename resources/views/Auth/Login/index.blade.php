@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Skiddie</title>
-    <link rel="stylesheet" href="assets-auth/css/main/app.css">
-    <link rel="stylesheet" href="assets-auth/css/pages/auth.css">
-    <link rel="shortcut icon" href="assets-auth/images/logo/favicon.svg" type="image/x-icon">
-    <link rel="shortcut icon" href="assets-auth/images/logo/favicon.png" type="image/png">
+    <link rel="stylesheet" href="{{ asset('assets-auth/css/main/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets-auth/css/pages/auth.css') }}">
+    <link rel="shortcut icon" href="{{ asset('assets-auth/images/logo/favicon.svg') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('assets-auth/images/logo/favicon.png') }}" type="image/png">
 </head>
 
 <body>
@@ -17,7 +17,7 @@
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
                     <div class="auth-logo">
-                        <a href="index.html"><img src="assets-auth/images/logo/logo.svg" alt="Logo"></a>
+                        <a href="index.html"><img src="{{ asset('assets-auth/images/skiddie.png') }}" alt="Logo"></a>
                     </div>
                     <h1 class="auth-title">Log in.</h1>
                     @if (session()->has('success'))
