@@ -95,127 +95,42 @@
                     <div class="col-12">
                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-indicators">
-                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                                    class="active" aria-current="true" aria-label="Slide 1"></button>
-                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                                    aria-label="Slide 2"></button>
-                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                                    aria-label="Slide 3"></button>
+                                @foreach ($teams as $index => $team)
+                                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                                        data-bs-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}"
+                                        aria-current="{{ $index == 0 ? 'true' : 'false' }}"
+                                        aria-label="Slide {{ $index + 1 }}"></button>
+                                @endforeach
                             </div>
                             <div class="carousel-inner">
-                                <div class="carousel-item active mb-5">
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-md-4">
-                                            <img src="{{ asset('assets-frontend/images/dedirosandi.jpeg') }}"
-                                                class="d-block w-100" alt="dedi rosandi">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="text-header mt-3 mt-lg-0">
-                                                Dedi Rosandi
+                                @foreach ($teams as $index => $team)
+                                    <div class="carousel-item {{ $index == 0 ? 'active' : '' }} mb-5">
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-md-4">
+                                                <img src="{{ asset('storage/' . $team->profile_picture) }}"
+                                                    class="d-block w-100" alt="{{ $team->name }}">
                                             </div>
-                                            <div class="underlined-custom"></div>
-                                            <div class="text-slug">
-                                                Back-End Web Developer
-                                            </div>
-                                            <div class="text-content">
-                                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo eveniet
-                                                velit incidunt mollitia
-                                                error possimus repellat, temporibus minima eaque, neque harum
-                                                consequuntur esse exercitationem
-                                                corporis vitae atque in! Illum ratione est iusto assumenda eius
-                                                laudantium ex magnam cupiditate
-                                                facere itaque, minus sed omnis aliquid ut voluptatem libero, reiciendis
-                                                nam in.
-                                            </div>
-                                            <div class="text-content">
-                                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo eveniet
-                                                velit incidunt mollitia
-                                                error possimus repellat, temporibus minima eaque, neque harum
-                                                consequuntur esse exercitationem
-                                                corporis vitae atque in! Illum ratione est iusto assumenda eius
-                                                laudantium ex magnam cupiditate
-                                                facere itaque, minus sed omnis aliquid ut voluptatem libero, reiciendis
-                                                nam in.
+                                            <div class="col-md-8">
+                                                <div class="text-header mt-3 mt-lg-0">
+                                                    {{ $team->name }}
+                                                </div>
+                                                <div class="underlined-custom"></div>
+                                                <div class="text-slug">
+                                                    {{ $team->as }}
+                                                </div>
+                                                <div class="text-content">
+                                                    {{ $team->description }}
+                                                </div>
+                                                <!-- Tambahkan konten lain yang diinginkan -->
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="carousel-item mb-5">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <img src="{{ asset('assets-frontend/images/dedirosandi.jpeg') }}"
-                                                class="d-block w-100" alt="dedi rosandi">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="text-header mt-3 mt-lg-0">
-                                                Dedi Rosandi
-                                            </div>
-                                            <div class="underlined-custom"></div>
-                                            <div class="text-slug">
-                                                Back-End Web Developer
-                                            </div>
-                                            <div class="text-content">
-                                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo eveniet
-                                                velit incidunt mollitia
-                                                error possimus repellat, temporibus minima eaque, neque harum
-                                                consequuntur esse exercitationem
-                                                corporis vitae atque in! Illum ratione est iusto assumenda eius
-                                                laudantium ex magnam cupiditate
-                                                facere itaque, minus sed omnis aliquid ut voluptatem libero, reiciendis
-                                                nam in.
-                                            </div>
-                                            <div class="text-content">
-                                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo eveniet
-                                                velit incidunt mollitia
-                                                error possimus repellat, temporibus minima eaque, neque harum
-                                                consequuntur esse exercitationem
-                                                corporis vitae atque in! Illum ratione est iusto assumenda eius
-                                                laudantium ex magnam cupiditate
-                                                facere itaque, minus sed omnis aliquid ut voluptatem libero, reiciendis
-                                                nam in.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="carousel-item mb-5">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <img src="{{ asset('assets-frontend/images/dedirosandi.jpeg') }}"
-                                                class="d-block w-100" alt="dedi rosandi">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="text-header mt-3 mt-lg-0">
-                                                Dedi Rosandi
-                                            </div>
-                                            <div class="underlined-custom"></div>
-                                            <div class="text-slug">
-                                                Back-End Web Developer
-                                            </div>
-                                            <div class="text-content">
-                                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo eveniet
-                                                velit incidunt mollitia
-                                                error possimus repellat, temporibus minima eaque, neque harum
-                                                consequuntur esse exercitationem
-                                                corporis vitae atque in! Illum ratione est iusto assumenda eius
-                                                laudantium ex magnam cupiditate
-                                                facere itaque, minus sed omnis aliquid ut voluptatem libero, reiciendis
-                                                nam in.
-                                            </div>
-                                            <div class="text-content">
-                                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo eveniet
-                                                velit incidunt mollitia
-                                                error possimus repellat, temporibus minima eaque, neque harum
-                                                consequuntur esse exercitationem
-                                                corporis vitae atque in! Illum ratione est iusto assumenda eius
-                                                laudantium ex magnam cupiditate
-                                                facere itaque, minus sed omnis aliquid ut voluptatem libero, reiciendis
-                                                nam in.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
+
+
+
                     </div>
                 </div>
             </div>
@@ -229,330 +144,60 @@
             </div>
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-sm-12 col-lg-4">
-                        <div class="card-custom">
-                            <div class="card-heading">
-                                Project Team
-                            </div>
-                            <div class="team mb-3">
-                                <div class="img-team-card">
-                                    <img src="{{ asset('assets-frontend/images/dedirosandi.jpeg') }}"
-                                        alt="dedirosandi" class="img-fluid">
+                    @foreach ($projects as $project)
+                        <div class="col-sm-12 col-lg-4">
+                            <div class="card-custom">
+                                <div class="card-heading">
+                                    Project Team
                                 </div>
-                                <div class="img-team-card">
-                                    <img src="{{ asset('assets-frontend/images/dedirosandi.jpeg') }}"
-                                        alt="dedirosandi" class="img-fluid">
+                                <div class="team mb-3">
+                                    @foreach ($project->users as $user)
+                                        <div class="img-team-card">
+                                            <img src="{{ asset('storage/' . $user->profile_picture) }}"
+                                                alt="dedirosandi" class="img-fluid">
+                                        </div>
+                                    @endforeach
                                 </div>
-                                <div class="img-team-card">
-                                    <img src="{{ asset('assets-frontend/images/dedirosandi.jpeg') }}"
-                                        alt="dedirosandi" class="img-fluid">
+                                @foreach ($project->project_images as $index => $image)
+                                    @if ($index == 0)
+                                        <div class="image-project mb-2">
+                                            <img src="{{ asset('storage/' . $image->image) }}" alt="dedirosandi"
+                                                class="img-fluid">
+                                        </div>
+                                    @endif
+                                @endforeach
+                                <div class="title mt-4">
+                                    <h3> {{ $project->name }} </h3>
                                 </div>
-                            </div>
 
-                            <div class="image-project mb-2">
-                                <img src="{{ asset('assets-frontend/images/banner.png') }}" alt="dedirosandi"
-                                    class="img-fluid">
-                            </div>
-
-                            <div class="title mt-4">
-                                <h3>Sistem Informasi Warga RT RW NET</h3>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="difficulty mt-2">
-                                        Difficult Project
+                                {{-- <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="difficulty mt-2">
+                                            Difficult Project
+                                        </div>
+                                        <div class="rating">
+                                            <span>
+                                                <img src="{{ asset('assets-frontend/images/star.png') }}"
+                                                    alt="rating" class="img-rating">
+                                                <img src="{{ asset('assets-frontend/images/star.png') }}"
+                                                    alt="rating" class="img-rating">
+                                                <img src="{{ asset('assets-frontend/images/star.png') }}"
+                                                    alt="rating" class="img-rating">
+                                                <img src="{{ asset('assets-frontend/images/star.png') }}"
+                                                    alt="rating" class="img-rating">
+                                            </span>
+                                        </div>
                                     </div>
-                                    <div class="rating">
-                                        <span>
-                                            <img src="{{ asset('assets-frontend/images/star.png') }}" alt="rating"
-                                                class="img-rating">
-                                            <img src="{{ asset('assets-frontend/images/star.png') }}" alt="rating"
-                                                class="img-rating">
-                                            <img src="{{ asset('assets-frontend/images/star.png') }}" alt="rating"
-                                                class="img-rating">
-                                            <img src="{{ asset('assets-frontend/images/star.png') }}" alt="rating"
-                                                class="img-rating">
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
+                                </div> --}}
 
-                            <div class="d-flex justify-content-end mt-4 mb-3">
-                                <a href="detail.html" class="btn btn-sm btn-project">Selengkapnya</a>
+                                <div class="d-flex justify-content-end mt-4 mb-3">
+                                    <a href="detail/{{ $project->slug }}"
+                                        class="btn btn-sm btn-project">Selengkapnya</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-4">
-                        <div class="card-custom">
-                            <div class="card-heading">
-                                Project Team
-                            </div>
-                            <div class="team mb-3">
-                                <div class="img-team-card">
-                                    <img src="{{ asset('assets-frontend/images/dedirosandi.jpeg') }}"
-                                        alt="dedirosandi" class="img-fluid">
-                                </div>
-                                <div class="img-team-card">
-                                    <img src="{{ asset('assets-frontend/images/dedirosandi.jpeg') }}"
-                                        alt="dedirosandi" class="img-fluid">
-                                </div>
-                                <div class="img-team-card">
-                                    <img src="{{ asset('assets-frontend/images/dedirosandi.jpeg') }}"
-                                        alt="dedirosandi" class="img-fluid">
-                                </div>
-                            </div>
+                    @endforeach
 
-                            <div class="image-project mb-2">
-                                <img src="{{ asset('assets-frontend/images/banner.png') }}" alt="dedirosandi"
-                                    class="img-fluid">
-                            </div>
-
-                            <div class="title mt-4">
-                                <h3>Sistem Informasi Warga RT RW NET</h3>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="difficulty mt-2">
-                                        Difficult Project
-                                    </div>
-                                    <div class="rating">
-                                        <span>
-                                            <img src="{{ asset('assets-frontend/images/star.png') }}" alt="rating"
-                                                class="img-rating">
-                                            <img src="{{ asset('assets-frontend/images/star.png') }}" alt="rating"
-                                                class="img-rating">
-                                            <img src="{{ asset('assets-frontend/images/star.png') }}" alt="rating"
-                                                class="img-rating">
-                                            <img src="{{ asset('assets-frontend/images/star.png') }}" alt="rating"
-                                                class="img-rating">
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="d-flex justify-content-end mt-4 mb-3">
-                                <button class="btn btn-sm btn-project">Selengkapnya</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-4">
-                        <div class="card-custom">
-                            <div class="card-heading">
-                                Project Team
-                            </div>
-                            <div class="team mb-3">
-                                <div class="img-team-card">
-                                    <img src="{{ asset('assets-frontend/images/dedirosandi.jpeg') }}"
-                                        alt="dedirosandi" class="img-fluid">
-                                </div>
-                                <div class="img-team-card">
-                                    <img src="{{ asset('assets-frontend/images/dedirosandi.jpeg') }}"
-                                        alt="dedirosandi" class="img-fluid">
-                                </div>
-                                <div class="img-team-card">
-                                    <img src="{{ asset('assets-frontend/images/dedirosandi.jpeg') }}"
-                                        alt="dedirosandi" class="img-fluid">
-                                </div>
-                            </div>
-
-                            <div class="image-project mb-2">
-                                <img src="{{ asset('assets-frontend/images/banner.png') }}" alt="dedirosandi"
-                                    class="img-fluid">
-                            </div>
-
-                            <div class="title mt-4">
-                                <h3>Sistem Informasi Warga RT RW NET</h3>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="difficulty mt-2">
-                                        Difficult Project
-                                    </div>
-                                    <div class="rating">
-                                        <span>
-                                            <img src="{{ asset('assets-frontend/images/star.png') }}" alt="rating"
-                                                class="img-rating">
-                                            <img src="{{ asset('assets-frontend/images/star.png') }}" alt="rating"
-                                                class="img-rating">
-                                            <img src="{{ asset('assets-frontend/images/star.png') }}" alt="rating"
-                                                class="img-rating">
-                                            <img src="{{ asset('assets-frontend/images/star.png') }}" alt="rating"
-                                                class="img-rating">
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="d-flex justify-content-end mt-4 mb-3">
-                                <button class="btn btn-sm btn-project">Selengkapnya</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-4">
-                        <div class="card-custom">
-                            <div class="card-heading">
-                                Project Team
-                            </div>
-                            <div class="team mb-3">
-                                <div class="img-team-card">
-                                    <img src="{{ asset('assets-frontend/images/dedirosandi.jpeg') }}"
-                                        alt="dedirosandi" class="img-fluid">
-                                </div>
-                                <div class="img-team-card">
-                                    <img src="{{ asset('assets-frontend/images/dedirosandi.jpeg') }}"
-                                        alt="dedirosandi" class="img-fluid">
-                                </div>
-                                <div class="img-team-card">
-                                    <img src="{{ asset('assets-frontend/images/dedirosandi.jpeg') }}"
-                                        alt="dedirosandi" class="img-fluid">
-                                </div>
-                            </div>
-
-                            <div class="image-project mb-2">
-                                <img src="{{ asset('assets-frontend/images/banner.png') }}" alt="dedirosandi"
-                                    class="img-fluid">
-                            </div>
-
-                            <div class="title mt-4">
-                                <h3>Sistem Informasi Warga RT RW NET</h3>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="difficulty mt-2">
-                                        Difficult Project
-                                    </div>
-                                    <div class="rating">
-                                        <span>
-                                            <img src="{{ asset('assets-frontend/images/star.png') }}" alt="rating"
-                                                class="img-rating">
-                                            <img src="{{ asset('assets-frontend/images/star.png') }}" alt="rating"
-                                                class="img-rating">
-                                            <img src="{{ asset('assets-frontend/images/star.png') }}" alt="rating"
-                                                class="img-rating">
-                                            <img src="{{ asset('assets-frontend/images/star.png') }}" alt="rating"
-                                                class="img-rating">
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="d-flex justify-content-end mt-4 mb-3">
-                                <button class="btn btn-sm btn-project">Selengkapnya</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-4">
-                        <div class="card-custom">
-                            <div class="card-heading">
-                                Project Team
-                            </div>
-                            <div class="team mb-3">
-                                <div class="img-team-card">
-                                    <img src="{{ asset('assets-frontend/images/dedirosandi.jpeg') }}"
-                                        alt="dedirosandi" class="img-fluid">
-                                </div>
-                                <div class="img-team-card">
-                                    <img src="{{ asset('assets-frontend/images/dedirosandi.jpeg') }}"
-                                        alt="dedirosandi" class="img-fluid">
-                                </div>
-                                <div class="img-team-card">
-                                    <img src="{{ asset('assets-frontend/images/dedirosandi.jpeg') }}"
-                                        alt="dedirosandi" class="img-fluid">
-                                </div>
-                            </div>
-
-                            <div class="image-project mb-2">
-                                <img src="{{ asset('assets-frontend/images/banner.png') }}" alt="dedirosandi"
-                                    class="img-fluid">
-                            </div>
-
-                            <div class="title mt-4">
-                                <h3>Sistem Informasi Warga RT RW NET</h3>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="difficulty mt-2">
-                                        Difficult Project
-                                    </div>
-                                    <div class="rating">
-                                        <span>
-                                            <img src="{{ asset('assets-frontend/images/star.png') }}" alt="rating"
-                                                class="img-rating">
-                                            <img src="{{ asset('assets-frontend/images/star.png') }}" alt="rating"
-                                                class="img-rating">
-                                            <img src="{{ asset('assets-frontend/images/star.png') }}" alt="rating"
-                                                class="img-rating">
-                                            <img src="{{ asset('assets-frontend/images/star.png') }}" alt="rating"
-                                                class="img-rating">
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="d-flex justify-content-end mt-4 mb-3">
-                                <button class="btn btn-sm btn-project">Selengkapnya</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-4">
-                        <div class="card-custom">
-                            <div class="card-heading">
-                                Project Team
-                            </div>
-                            <div class="team mb-3">
-                                <div class="img-team-card">
-                                    <img src="{{ asset('assets-frontend/images/dedirosandi.jpeg') }}"
-                                        alt="dedirosandi" class="img-fluid">
-                                </div>
-                                <div class="img-team-card">
-                                    <img src="{{ asset('assets-frontend/images/dedirosandi.jpeg') }}"
-                                        alt="dedirosandi" class="img-fluid">
-                                </div>
-                                <div class="img-team-card">
-                                    <img src="{{ asset('assets-frontend/images/dedirosandi.jpeg') }}"
-                                        alt="dedirosandi" class="img-fluid">
-                                </div>
-                            </div>
-
-                            <div class="image-project mb-2">
-                                <img src="{{ asset('assets-frontend/images/banner.png') }}" alt="dedirosandi"
-                                    class="img-fluid">
-                            </div>
-
-                            <div class="title mt-4">
-                                <h3>Sistem Informasi Warga RT RW NET</h3>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="difficulty mt-2">
-                                        Difficult Project
-                                    </div>
-                                    <div class="rating">
-                                        <span>
-                                            <img src="{{ asset('assets-frontend/images/star.png') }}" alt="rating"
-                                                class="img-rating">
-                                            <img src="{{ asset('assets-frontend/images/star.png') }}" alt="rating"
-                                                class="img-rating">
-                                            <img src="{{ asset('assets-frontend/images/star.png') }}" alt="rating"
-                                                class="img-rating">
-                                            <img src="{{ asset('assets-frontend/images/star.png') }}" alt="rating"
-                                                class="img-rating">
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="d-flex justify-content-end mt-4 mb-3">
-                                <button class="btn btn-sm btn-project">Selengkapnya</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -648,6 +293,16 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var myCarousel = document.getElementById("carouselExampleIndicators");
+            var carousel = new bootstrap.Carousel(myCarousel, {
+                interval: 3000, // Waktu tampilan per slide (ms)
+                pause: "hover", // Jeda ketika di hover (true/false)
+                wrap: true // Putar ulang secara otomatis setelah mencapai slide terakhir (true/false)
+            });
+        });
     </script>
 </body>
 

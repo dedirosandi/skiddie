@@ -8,6 +8,7 @@ use App\Http\Controllers\backend\TeamController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\backend\ArticleController;
 use App\Http\Controllers\backend\ProjectController;
+use App\Http\Controllers\frontend\FrontendController;
 use App\Http\Controllers\backend\FileManagerController;
 use App\Http\Controllers\dashboard\DashboardController;
 
@@ -22,9 +23,11 @@ use App\Http\Controllers\dashboard\DashboardController;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+// Route::get('/', function () {
+//     return view('frontend.index');
+// });
+
+Route::resource('/', FrontendController::class);
 
 // Auth
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
