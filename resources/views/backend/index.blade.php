@@ -35,6 +35,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets-backend/src/plugins/slick/slick.css') }}" />
     <link rel="stylesheet" type="text/css"
         href="{{ asset('assets-backend/src/plugins/dropzone/src/dropzone.css') }}" />
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
 
 </head>
 

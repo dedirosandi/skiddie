@@ -54,8 +54,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Description</label>
-                    <textarea class="form-control" name="body">{{ old('body', $project->body) }}</textarea>
+                    <label>Body Content</label>
+                    <input id="x" type="hidden" name="body" value="{{ old('body', $project->body) }}">
+                    <trix-editor input="x"></trix-editor>
                 </div>
 
                 <div class="card-group">

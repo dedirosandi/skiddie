@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\backend;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\backend\Article;
 use App\Http\Controllers\Controller;
@@ -80,10 +81,13 @@ class ArticleController extends Controller
      * @param  \App\Models\backend\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function edit(Article $article)
-    {
-        //
-    }
+   public function edit($slug)
+{
+    $article = Article::where('slug', $slug)->firstOrFail();
+    return view('backend.article.edit', compact('article'));
+}
+
+
 
     /**
      * Update the specified resource in storage.
@@ -92,10 +96,39 @@ class ArticleController extends Controller
      * @param  \App\Models\backend\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
-    {
-        //
+    public function update(Request $request, $slug)
+{
+    $rules = [
+        'title' => 'required',
+        'slug' => 'required',
+        'category' => 'required',
+        'body' => 'required',
+        'thumbnail' => 'image',
+    ];
+
+    $validatedData = $request->validate($rules);
+
+    $article = Article::where('slug', $slug)->firstOrFail();
+
+    $article->title = $validatedData['title'];
+    $article->slug = $validatedData['slug'];
+    $article->category = $validatedData['category'];
+    $article->body = $validatedData['body'];
+
+    if ($request->hasFile('thumbnail')) {
+        if ($article->thumbnail) {
+            Storage::delete($article->thumbnail);
+        }
+        $thumbnailPath = $request->file('thumbnail')->store('image/thumbnail-article');
+        $article->thumbnail = $thumbnailPath;
     }
+ $currentDateTime = Carbon::now();
+    $article->updated_at = $currentDateTime;
+    $article->save();
+
+    return redirect('/dashboard/article');
+}
+
 
     /**
      * Remove the specified resource from storage.

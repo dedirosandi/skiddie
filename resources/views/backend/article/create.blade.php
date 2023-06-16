@@ -35,8 +35,10 @@
                 </div>
                 <div class="form-group">
                     <label>Body Content</label>
-                    <textarea class="form-control" name="body">{{ old('body') }}</textarea>
+                    <input id="x" type="hidden" name="body" value="{{ old('body') }}">
+                    <trix-editor input="x"></trix-editor>
                 </div>
+
                 <div class="form-group">
                     <label>Article Thumbnail</label>
                     <input type="file" name="thumbnail" class="form-control-file form-control height-auto" />

@@ -1,0 +1,349 @@
+// untuk breakpoints
+@import "../../vendor/bootstrap-5/scss/bootstrap.scss";
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #f7f7f7;
+    height: 300vh;
+}
+
+// custom style
+.text-header {
+    font-size: 26px;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.text-content {
+    font-size: 14px;
+    font-weight: normal;
+    color: #dfdfdf;
+    margin: 30px auto;
+}
+
+.text-slug {
+    color: #a8a8a8;
+    font-weight: 300;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.underlined-custom {
+    border-bottom: #fad0d0 solid 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 80px;
+}
+
+.card-custom {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: #ffffff;
+}
+
+.card-heading {
+    font-weight: 500;
+    margin: 10px 0;
+}
+
+// end
+
+.navbar-skiddie {
+    padding: 20px 20px;
+    background-color: #fdfdfd;
+
+    .navbar-nav {
+        .nav-link {
+            margin-right: 20px;
+        }
+    }
+}
+
+.section-header-skiddie {
+    margin-top: 80px;
+
+    .text-header-header {
+        p {
+            color: #979797;
+            font-weight: 300;
+        }
+    }
+
+    img {
+        width: 75%;
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+
+        @include media-breakpoint-up(lg) {
+            width: 100%;
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
+        }
+    }
+
+    .btn-skiddie {
+        background-color: #013b49;
+        color: #ffffff;
+        font-weight: 500;
+        border-radius: 20px;
+        transition: 0.8s;
+
+        &:hover {
+            transform: translate(0px, -5px);
+        }
+    }
+}
+
+.title-our-team {
+    margin-top: 150px;
+    margin-bottom: 20px;
+
+    h2 {
+        font-weight: 600;
+        font-size: 32px;
+        text-align: center;
+    }
+}
+
+.section-our-team {
+    background-color: #1d3557;
+
+    img {
+        border-radius: 25px;
+    }
+}
+
+.section-our-project {
+    margin-top: 150px;
+
+    .header-text-project {
+        margin: 40px 0;
+    }
+
+    .card-custom {
+        margin-top: 20px;
+        margin-bottom: 10px;
+
+        .card-heading {
+            font-weight: 600;
+        }
+
+        .team {
+            display: flex;
+            height: auto;
+
+            .img-team-card {
+                border-radius: 50px;
+                width: 10%;
+                height: auto;
+                margin-right: 5px;
+                overflow: hidden;
+
+                img {
+                    max-width: 100%;
+                    height: 100%;
+                    background-size: contain;
+                    background-position: center;
+                    vertical-align: middle;
+                }
+            }
+        }
+
+        .title {
+            h3 {
+                font-size: 22px;
+                font-weight: 600;
+            }
+        }
+
+        .rating {
+            img {
+                width: 8%;
+            }
+        }
+
+        .btn-project {
+            padding: 10px 15px;
+            background-color: #1d3557;
+            color: #f7f7f7;
+            border-radius: 20px;
+            transition: 0.8s;
+
+            &:hover {
+                background-color: #192e4b;
+                box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.3);
+            }
+        }
+    }
+}
+
+.section-artikel {
+    margin: 100px 0;
+
+    .author {
+        font-size: 12px;
+        font-weight: 400;
+        color: #979797;
+    }
+
+    .title-artikel {
+        h3 {
+            font-size: 24px;
+        }
+    }
+    .card-custom-article {
+        padding: 20px 20px;
+        border: none;
+        border-radius: 20px;
+        background-color: #ffffff;
+        position: relative; /* tambahkan ini untuk memposisikan elemen child secara absolut */
+    }
+
+    .card-custom-article .category {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background-color: #f44336;
+        color: #fff;
+        padding: 5px 10px;
+        font-size: 14px;
+        border-radius: 4px;
+    }
+}
+
+// detail page
+.section-detail-project {
+    margin-top: 50px;
+
+    .item-header {
+        .icon-item {
+            font-size: 14px;
+            align-items: center;
+            align-content: center;
+            font-weight: 500;
+        }
+    }
+
+    .card-sale {
+        position: relative;
+
+        .sale {
+            ::after {
+                content: "";
+                position: absolute;
+                width: 200px;
+                top: 20px;
+            }
+        }
+
+        .btn-order {
+            margin-top: 15px;
+            border-radius: 30px;
+            padding: 15px 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: #484848;
+            background-color: #c0e1ff;
+
+            &:hover {
+                background-color: #b2d6f8;
+            }
+        }
+
+        .btn-order.demo {
+            margin-top: 15px;
+            border-radius: 30px;
+            padding: 15px 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: #484848;
+            background-color: #aeb6ff;
+
+            &:hover {
+                background-color: #a4acfc;
+            }
+        }
+    }
+
+    .icon-tools {
+        span {
+            margin-left: 10px;
+
+            &:nth-child(1) {
+                margin-left: 0 !important;
+            }
+        }
+    }
+
+    .article {
+        li {
+            list-style-type: decimal;
+            margin: 10px 0;
+        }
+    }
+}
+
+.section-contact {
+    padding: 50px 0;
+}
+
+.section-contact h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.section-contact p {
+    margin-bottom: 30px;
+    color: #888;
+}
+
+.section-contact form .form-group {
+    margin-bottom: 20px;
+}
+
+.section-contact form .form-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.section-contact form textarea.form-control {
+    height: 120px;
+}
+
+.section-contact form button.btn-primary {
+    background-color: #013b49;
+    color: #ffffff;
+    font-weight: 500;
+    border-radius: 20px;
+    transition: 0.8s;
+
+    &:hover {
+        transform: translate(0px, -5px);
+    }
+}
+
+.section-contact .col-md-6:last-child {
+    margin-top: 30px;
+}
+
+.section-contact .col-md-6:last-child h2 {
+    margin-top: 0;
+}
+
+.section-contact .col-md-6:last-child iframe {
+    width: 100%;
+    height: 250px;
+}
+
+.section-footer {
+    background-color: #1d3557;
+    text-align: center;
+    p {
+        color: #f7f7f7;
+    }
+}

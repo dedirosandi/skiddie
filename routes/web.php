@@ -8,6 +8,7 @@ use App\Http\Controllers\backend\TeamController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\backend\ArticleController;
 use App\Http\Controllers\backend\ProjectController;
+use App\Http\Controllers\backend\FileManagerController;
 use App\Http\Controllers\dashboard\DashboardController;
 
 /*
@@ -22,7 +23,7 @@ use App\Http\Controllers\dashboard\DashboardController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.index');
 });
 
 // Auth
@@ -40,3 +41,6 @@ Route::get('/dashboard/article/checkSlug', [ArticleController::class, 'checkSlug
 Route::resource('/dashboard/team', TeamController::class)->middleware('auth');
 Route::resource('/dashboard/project', ProjectController::class)->middleware('auth');
 Route::resource('/dashboard/article', ArticleController::class)->middleware('auth');
+Route::resource('/dashboard/filemanager', FileManagerController::class)->middleware('auth');
+Route::get('/dashboard/filemanager/{fileManager}/download', [FileManagerController::class, 'download'])
+    ->name('filemanager.download')->middleware('auth');

@@ -25,7 +25,7 @@
         <div class="blog-wrap">
             <div class="container pd-0">
                 <div class="row">
-                    <div class="col-md-8 col-sm-12">
+                    <div class="col-8">
                         <div class="blog-detail card-box overflow-hidden mb-30">
                             <div class="blog-img">
                                 <img src="{{ asset('storage/' . $article->thumbnail) }}" alt="" />
@@ -35,12 +35,28 @@
                                     {{ $article->title }}
                                 </h4>
                                 <p>
-                                    {{ $article->body }}
+                                <div id="app">
+                                    <template v-if="!showFullArticle">
+                                        <p v-html="truncatedText"></p>
+                                        <button class="btn btn-secondary" @click="showFullArticle = true"
+                                            v-if="hasMoreContent">Read More</button>
+                                    </template>
+                                    <div v-else>{!! $article->body !!}</div>
+                                </div>
+
+
+
+
+
+
+
+
+
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-4">
                         <div class="card-box mb-30">
                             <h5 class="pd-20 h5 mb-0">Recent Post</h5>
                             <div class="latest-post">
@@ -48,7 +64,8 @@
                                     @foreach ($recentArticles as $recent)
                                         <li>
                                             <h4>
-                                                <a href="/dashboard/article/{{ $recent->slug }}"> {{ $recent->title }} </a>
+                                                <a href="/dashboard/article/{{ $recent->slug }}">
+                                                    {{ substr($recent->title, 0, 25) }}... </a>
                                             </h4>
                                             <span>{{ $recent->category }}</span>
                                         </li>
@@ -62,5 +79,34 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                showFullArticle: false,
+                maxLength: 200,
+                article: `{!! addslashes($article->body) !!}`,
+                truncatedText: '',
+                hasMoreContent: false
+            },
+            methods: {
+                calculateContent() {
+                    if (this.article.length > this.maxLength) {
+                        this.hasMoreContent = true;
+                        this.truncatedText = this.article.slice(0, this.maxLength) + '...';
+                    } else {
+                        this.hasMoreContent = false;
+                        this.truncatedText = this.article;
+                    }
+                }
+            },
+            created() {
+                this.calculateContent();
+            }
+        });
+    </script>
+
+
 
 @endsection

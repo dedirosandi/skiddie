@@ -10,7 +10,7 @@
             <div class="card-box height-100-p widget-style3">
                 <div class="d-flex flex-wrap">
                     <div class="widget-data">
-                        <div class="weight-700 font-24 text-dark">{{ $jumlahProject }}</div>
+                        <div class="weight-700 font-24 text-dark">{{ $CountProject }}</div>
                         <div class="font-14 text-secondary weight-500">
                             Project
                         </div>
@@ -27,7 +27,7 @@
             <div class="card-box height-100-p widget-style3">
                 <div class="d-flex flex-wrap">
                     <div class="widget-data">
-                        <div class="weight-700 font-24 text-dark">{{ $jumlahTeam }}</div>
+                        <div class="weight-700 font-24 text-dark">{{ $CountTeam }}</div>
                         <div class="font-14 text-secondary weight-500">
                             Team
                         </div>
@@ -44,7 +44,7 @@
             <div class="card-box height-100-p widget-style3">
                 <div class="d-flex flex-wrap">
                     <div class="widget-data">
-                        <div class="weight-700 font-24 text-dark">50</div>
+                        <div class="weight-700 font-24 text-dark">{{ $CountArticle }}</div>
                         <div class="font-14 text-secondary weight-500">
                             Article
                         </div>

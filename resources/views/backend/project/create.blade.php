@@ -50,22 +50,27 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Description</label>
-                    <textarea class="form-control" name="body">{{ old('body') }}</textarea>
+                    <label>Body Content</label>
+                    <input id="x" type="hidden" name="body" value="{{ old('body') }}">
+                    <trix-editor input="x"></trix-editor>
                 </div>
-                {{-- <div class="form-group">
-                    <label>Thumbnail</label>
-                    <div class="custom-file">
-                        <input type="file" name="image[]" class="custom-file-input" multiple />
-                        <label class="custom-file-label">Choose file</label>
-                    </div>
-                </div> --}}
                 <div class="form-group">
                     <label>Project Image</label>
                     <input type="file" name="image[]" class="form-control-file form-control height-auto" multiple />
                 </div>
+                <div class="preview-images mb-5">
+                    <p>Preview:</p>
+                    <div class="card-group">
+                        <!-- Tampilkan gambar-gambar yang akan diunggah -->
+                        <div id="preview-container" class="card">
+                            <div class="card-body">
+                                <div id="image-preview" class="card-text"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="row">
+                <div class="row mt-5">
                     <div class="col">
                         <button type="submit" class="btn btn-success">Create Process</button> <a class="btn btn-danger"
                             href="/dashboard/project">Cancle</a>
@@ -74,6 +79,32 @@
             </form>
         </div>
     </div>
+    <script>
+        // Fungsi untuk menampilkan gambar-gambar yang akan diunggah
+        function previewImages(event) {
+            var files = event.target.files;
+            var imagePreview = document.getElementById('image-preview');
+            imagePreview.innerHTML = '';
+
+            for (var i = 0; i < files.length; i++) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var previewImage = document.createElement('img');
+                    previewImage.className = 'img-thumbnail';
+                    previewImage.style.width = '150px'; // Ubah lebar gambar menjadi 50 piksel
+                    previewImage.style.height = '150px'; // Ubah tinggi gambar menjadi 50 piksel
+                    previewImage.src = e.target.result;
+                    imagePreview.appendChild(previewImage);
+                }
+                reader.readAsDataURL(files[i]);
+            }
+        }
+
+        // Mengambil elemen input file
+        var inputImage = document.querySelector('input[name="image[]"]');
+        // Menambahkan event listener untuk mengaktifkan preview saat ada perubahan pada input file
+        inputImage.addEventListener('change', previewImages);
+    </script>
 
     <script>
         const name = document.querySelector('#name')

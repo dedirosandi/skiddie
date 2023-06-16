@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\backend\Article;
 use App\Models\backend\Project;
 use App\Http\Controllers\Controller;
 
@@ -17,10 +18,11 @@ class MainController extends Controller
     public function index()
     {
         //
-        $jumlahTeam = User::count();
-        $jumlahProject = Project::count();
+        $CountTeam = User::count();
+        $CountProject = Project::count();
+        $CountArticle = Article::count();
 
-        return view('backend.main.index', compact('jumlahTeam','jumlahProject'));
+        return view('backend.main.index', compact('CountTeam','CountProject','CountArticle'));
     }
 
     /**

@@ -51,12 +51,12 @@
                                         <a href="/dashboard/team/{{ $team->id }}/edit" class="btn btn-sm btn-info"><i
                                                 class="icon-copy dw dw-edit-1"></i></a>
                                     @else
-                                        <form action="/dashboard/team/{{ $team->id }}" method="post">
+                                        {{-- <form action="/dashboard/team/{{ $team->id }}" method="post">
                                             @method('delete')
                                             @csrf
                                             <button class="btn btn-sm btn-danger"><i
                                                     class="icon-copy dw dw-delete-3"></i></button>
-                                        </form>
+                                        </form> --}}
                                     @endif
 
                                 </td>

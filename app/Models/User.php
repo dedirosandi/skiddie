@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\backend\Project;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\backend\FileManager;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -51,6 +52,11 @@ class User extends Authenticatable
     public function projects()
     {
         return $this->belongsToMany(Project::class, 'project_users');
+    }
+
+    public function fileManagers(): HasMany
+    {
+        return $this->hasMany(FileManager::class, 'uploaded_by');
     }
 
    

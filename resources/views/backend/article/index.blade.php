@@ -42,7 +42,7 @@
                     <tbody>
                         @foreach ($articles as $article)
                             <tr>
-                                <td>{{ $article->title }}</td>
+                                <td>{{ substr($article->title, 0, 50) }}...</td>
                                 <td>{{ $article->category }}</td>
                                 <td>{{ $article->user->name }}</td>
                                 <td>
