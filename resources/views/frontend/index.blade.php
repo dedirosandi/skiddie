@@ -138,7 +138,7 @@
 
         </section>
 
-        <section class="section-our-project">
+        {{-- <section class="section-our-project">
             <div class="header-text-project">
                 <h3 class="h2 text-center">Our Project</h3>
             </div>
@@ -170,7 +170,7 @@
                                     <h3> {{ $project->name }} </h3>
                                 </div>
 
-                                {{-- <div class="row">
+                                <div class="row">
                                     <div class="col-sm-12">
                                         <div class="difficulty mt-2">
                                             Difficult Project
@@ -188,7 +188,7 @@
                                             </span>
                                         </div>
                                     </div>
-                                </div> --}}
+                                </div>
 
                                 <div class="d-flex justify-content-end mt-4 mb-3">
                                     <a href="detail/{{ $project->slug }}"
@@ -200,9 +200,9 @@
 
                 </div>
             </div>
-        </section>
+        </section> --}}
 
-        <section class="section-artikel justify-content-center">
+        {{-- <section class="section-artikel justify-content-center">
             <div class="title text-center">
                 <h3>Article</h3>
             </div>
@@ -237,7 +237,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
 
         {{-- <section class="section-contact">
             <div class="container">
