@@ -29,6 +29,38 @@
                     <input class="form-control" type="number" name="price" placeholder="1500000"
                         value="{{ old('price') }}" />
                 </div>
+
+
+                {{-- <div class="form-group">
+                    <label>Difficult Project</label>
+                    <div class="difficult">
+                        <input type="radio" id="star5" name="difficult" value="5" class="star5" />
+                        <label for="star5" title="5 stars"></label>
+                        <input type="radio" id="star4" name="difficult" value="4" />
+                        <label for="star4" title="4 stars"></label>
+                        <input type="radio" id="star3" name="difficult" value="3" />
+                        <label for="star3" title="3 stars"></label>
+                        <input type="radio" id="star2" name="difficult" value="2" />
+                        <label for="star2" title="2 stars"></label>
+                        <input type="radio" id="star1" name="difficult" value="1" />
+                        <label for="star1" title="1 star"></label>
+                    </div>
+                    <input type="range" class="form-control form-range" min="0" max="5" id="customRange2">
+                </div> --}}
+
+
+                <div class="form-group">
+                    <label>Difficult Project</label>
+                    <div class="row">
+                        <div class="col-11">
+                            <input style="width: 100%" name="difficult" type="range" class="form-range custom-range"
+                                min="10" max="100" id="customRange2">
+                        </div>
+                        <div class="col-1">
+                            <span id="percentage"></span>
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label>Demo Link</label>
                     <input class="form-control" type="url" name="demo_link" placeholder="https://www.demo.skiddie.id"
@@ -79,42 +111,6 @@
             </form>
         </div>
     </div>
-    <script>
-        // Fungsi untuk menampilkan gambar-gambar yang akan diunggah
-        function previewImages(event) {
-            var files = event.target.files;
-            var imagePreview = document.getElementById('image-preview');
-            imagePreview.innerHTML = '';
 
-            for (var i = 0; i < files.length; i++) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    var previewImage = document.createElement('img');
-                    previewImage.className = 'img-thumbnail';
-                    previewImage.style.width = '150px'; // Ubah lebar gambar menjadi 50 piksel
-                    previewImage.style.height = '150px'; // Ubah tinggi gambar menjadi 50 piksel
-                    previewImage.src = e.target.result;
-                    imagePreview.appendChild(previewImage);
-                }
-                reader.readAsDataURL(files[i]);
-            }
-        }
-
-        // Mengambil elemen input file
-        var inputImage = document.querySelector('input[name="image[]"]');
-        // Menambahkan event listener untuk mengaktifkan preview saat ada perubahan pada input file
-        inputImage.addEventListener('change', previewImages);
-    </script>
-
-    <script>
-        const name = document.querySelector('#name')
-        const slug = document.querySelector('#slug')
-
-        name.addEventListener('change', function() {
-            fetch('/dashboard/project/checkSlug?name=' + name.value)
-                .then(response => response.json())
-                .then(data => slug.value = data.slug)
-        });
-    </script>
 
 @endsection

@@ -43,9 +43,9 @@ class TeamController extends Controller
         //
         $validasiDataRegister = $request->validate([
             'name' => 'required',
-            'username' => 'required|min:3|max:255|unique:users',
-            'email' => 'required|email:dns|unique:users',
-            'password' => 'required|min:8|max:255',
+            'username' => 'required',
+            'email' => 'required',
+            'password' => 'required|min:8',
             'as' => 'required',
             'description' => 'required',
             'profile_picture' => 'required|image',

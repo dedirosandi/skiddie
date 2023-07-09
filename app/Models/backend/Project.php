@@ -18,6 +18,7 @@ class Project extends Model
         'body',
         'price',
         'demo_link',
+        'difficult',
         'tools',
         // 'thumbnail',
     ];

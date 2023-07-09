@@ -34,8 +34,8 @@
                     <thead>
                         <tr>
                             <th class="datatable-nosort">Name</th>
-                            <th class="datatable-nosort">As a</th>
                             <th class="datatable-nosort">Profile Picture</th>
+                            <th class="datatable-nosort">As a</th>
                             <th class="datatable-nosort">Action</th>
                         </tr>
                     </thead>
@@ -43,13 +43,14 @@
                         @foreach ($teams as $team)
                             <tr>
                                 <td>{{ $team->name }}</td>
-                                <td>{{ $team->as }}</td>
                                 <td><img width="50" class="rounded"
-                                        src="{{ asset('storage/' . $team->profile_picture) }}" alt=""></td>
+                                        src="{{ asset('storage/' . $team->profile_picture) }}" alt="">
+                                </td>
+                                <td>{{ $team->as }}</td>
                                 <td>
+                                    <a href="/dashboard/team/{{ $team->id }}/edit" class="btn btn-sm btn-info"><i
+                                            class="icon-copy dw dw-edit-1"></i></a>
                                     @if (Auth::check() && Auth::user()->id == $team->id)
-                                        <a href="/dashboard/team/{{ $team->id }}/edit" class="btn btn-sm btn-info"><i
-                                                class="icon-copy dw dw-edit-1"></i></a>
                                     @else
                                         {{-- <form action="/dashboard/team/{{ $team->id }}" method="post">
                                             @method('delete')

@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="title">
-                        <a href="/dashboard/acticle" class="btn btn-sm btn-primary"> Back to list</a>
+                        <a href="/dashboard/article" class="btn btn-sm btn-primary"> Back to list</a>
                     </div>
                 </div>
             </div>

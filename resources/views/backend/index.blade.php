@@ -38,6 +38,23 @@
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
     <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <style>
+        .custom-range {
+            width: 100%;
+        }
+
+        .percentage-red {
+            color: red;
+        }
+
+        .percentage-orange {
+            color: orange;
+        }
+
+        .percentage-green {
+            color: green;
+        }
+    </style>
 
 </head>
 
@@ -86,6 +103,15 @@
     <script src="{{ asset('assets-backend/src/plugins/slick/slick.min.js') }}"></script>
     <script src="{{ asset('assets-backend/src/plugins/dropzone/src/dropzone.js') }}"></script>
 
+    <script>
+        document.querySelectorAll('.difficult input[type="radio"]').forEach(function(input) {
+            input.addEventListener('change', function() {
+                if (this.value === '5') {
+                    document.querySelector('.difficult input.star5').checked = true;
+                }
+            });
+        });
+    </script>
 
     <script>
         jQuery(document).ready(function() {
@@ -109,6 +135,64 @@
                 centerMode: true,
                 focusOnSelect: true,
             });
+        });
+    </script>
+    <script>
+        // Fungsi untuk menampilkan gambar-gambar yang akan diunggah
+        function previewImages(event) {
+            var files = event.target.files;
+            var imagePreview = document.getElementById('image-preview');
+            imagePreview.innerHTML = '';
+
+            for (var i = 0; i < files.length; i++) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var previewImage = document.createElement('img');
+                    previewImage.className = 'img-thumbnail';
+                    previewImage.style.width = '150px'; // Ubah lebar gambar menjadi 50 piksel
+                    previewImage.style.height = '150px'; // Ubah tinggi gambar menjadi 50 piksel
+                    previewImage.src = e.target.result;
+                    imagePreview.appendChild(previewImage);
+                }
+                reader.readAsDataURL(files[i]);
+            }
+        }
+
+        // Mengambil elemen input file
+        var inputImage = document.querySelector('input[name="image[]"]');
+        // Menambahkan event listener untuk mengaktifkan preview saat ada perubahan pada input file
+        inputImage.addEventListener('change', previewImages);
+    </script>
+
+    <script>
+        const name = document.querySelector('#name')
+        const slug = document.querySelector('#slug')
+
+        name.addEventListener('change', function() {
+            fetch('/dashboard/project/checkSlug?name=' + name.value)
+                .then(response => response.json())
+                .then(data => slug.value = data.slug)
+        });
+    </script>
+    <script>
+        var rangeInput = document.getElementById('customRange2');
+        var percentageDisplay = document.getElementById('percentage');
+
+        rangeInput.addEventListener('input', function() {
+            var percentage = rangeInput.value;
+            percentageDisplay.textContent = percentage + '%';
+
+            // Menghapus kelas warna sebelumnya
+            percentageDisplay.classList.remove('percentage-red', 'percentage-orange', 'percentage-green');
+
+            // Menambahkan kelas warna sesuai dengan presentase
+            if (percentage < 30) {
+                percentageDisplay.classList.add('percentage-green');
+            } else if (percentage < 70) {
+                percentageDisplay.classList.add('percentage-orange');
+            } else {
+                percentageDisplay.classList.add('percentage-red');
+            }
         });
     </script>
 </body>

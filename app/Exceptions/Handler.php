@@ -18,14 +18,10 @@ class Handler extends ExceptionHandler
     ];
 
     public function render($request, Throwable $exception)
-    {
-        if ($exception instanceof NotFoundHttpException) {
-            // return response()->view('Dashboard.index', [], 404);
-            return redirect('/dashboard');
-        }
+{
+    return parent::render($request, $exception);
+}
 
-        return parent::render($request, $exception);
-    }
     /**
      * A list of the inputs that are never flashed for validation exceptions.
      *

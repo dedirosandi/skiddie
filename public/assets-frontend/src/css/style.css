@@ -11726,7 +11726,6 @@ textarea.form-control-lg {
 body {
   font-family: "Poppins", sans-serif;
   background-color: #f7f7f7;
-  height: 300vh;
 }
 
 .text-header {
@@ -11769,11 +11768,11 @@ body {
 }
 
 .navbar-skiddie {
-  padding: 20px 20px;
+  padding: 5px 20px;
   background-color: #fdfdfd;
 }
 .navbar-skiddie .navbar-nav .nav-link {
-  margin-right: 20px;
+  margin-right: 25px;
 }
 
 .section-header-skiddie {
@@ -11809,7 +11808,7 @@ body {
 }
 
 .title-our-team {
-  margin-top: 150px;
+  margin-top: 250px;
   margin-bottom: 20px;
 }
 .title-our-team h2, .title-our-team .h2 {
@@ -11826,13 +11825,13 @@ body {
 }
 
 .section-our-project {
-  margin-top: 150px;
+  margin-top: 100px;
 }
 .section-our-project .header-text-project {
   margin: 40px 0;
 }
 .section-our-project .card-custom {
-  margin-top: 20px;
+  margin-top: 15px;
   margin-bottom: 10px;
 }
 .section-our-project .card-custom .card-heading {
@@ -11905,7 +11904,7 @@ body {
 }
 
 .section-detail-project {
-  margin-top: 50px;
+  margin-top: 150px;
 }
 .section-detail-project .item-header .icon-item {
   font-size: 14px;
@@ -11951,6 +11950,9 @@ body {
 }
 .section-detail-project .icon-tools span:nth-child(1) {
   margin-left: 0 !important;
+}
+.section-detail-project .icon-tools span img {
+  width: 30px;
 }
 .section-detail-project .article li {
   list-style-type: decimal;

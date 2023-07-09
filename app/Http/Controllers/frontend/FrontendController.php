@@ -4,87 +4,32 @@ namespace App\Http\Controllers\frontend;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\backend\About;
+use App\Models\backend\Article;
 use App\Models\backend\Project;
 use App\Http\Controllers\Controller;
 
 class FrontendController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    //
+    public function Frontend()
 {
+    $abouts = About::first();
     $teams = User::all();
     $projects = Project::all();
+    $articles = Article::all();
 
-    return view('frontend.index', compact('teams','projects'));
+    return view('frontend.index', compact('teams','projects','articles','abouts'));
 }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+public function detailProject($slug)
+{
+    $project = Project::where('slug', $slug)->first();
+
+    if (!$project) {
+        abort(404); // Tampilkan halaman 404 jika project tidak ditemukan
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    return view('frontend.detail-project', compact('project'));
+}
 }

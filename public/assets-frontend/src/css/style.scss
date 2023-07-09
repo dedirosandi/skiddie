@@ -4,7 +4,7 @@
 body {
     font-family: "Poppins", sans-serif;
     background-color: #f7f7f7;
-    height: 300vh;
+    // height: 100vh;
 }
 
 // custom style
@@ -50,12 +50,12 @@ body {
 // end
 
 .navbar-skiddie {
-    padding: 20px 20px;
+    padding: 5px 20px;
     background-color: #fdfdfd;
 
     .navbar-nav {
         .nav-link {
-            margin-right: 20px;
+            margin-right: 25px;
         }
     }
 }
@@ -98,7 +98,7 @@ body {
 }
 
 .title-our-team {
-    margin-top: 150px;
+    margin-top: 250px;
     margin-bottom: 20px;
 
     h2 {
@@ -117,14 +117,14 @@ body {
 }
 
 .section-our-project {
-    margin-top: 150px;
+    margin-top: 100px;
 
     .header-text-project {
         margin: 40px 0;
     }
 
     .card-custom {
-        margin-top: 20px;
+        margin-top: 15px;
         margin-bottom: 10px;
 
         .card-heading {
@@ -216,7 +216,7 @@ body {
 
 // detail page
 .section-detail-project {
-    margin-top: 50px;
+    margin-top: 150px;
 
     .item-header {
         .icon-item {
@@ -274,6 +274,9 @@ body {
 
             &:nth-child(1) {
                 margin-left: 0 !important;
+            }
+            img {
+                width: 30px;
             }
         }
     }

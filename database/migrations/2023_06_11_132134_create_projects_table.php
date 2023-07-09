@@ -20,6 +20,7 @@ class CreateProjectsTable extends Migration
             $table->text('body');
             $table->string('price');
             $table->string('demo_link');
+            $table->string('difficult');
             // $table->string('thumbnail');
             $table->string('tools');
             // $table->timestamp('published_at')->nullable();

@@ -6,6 +6,7 @@ use App\Http\Controllers\auth\LogoutController;
 use App\Http\Controllers\backend\MainController;
 use App\Http\Controllers\backend\TeamController;
 use App\Http\Controllers\auth\RegisterController;
+use App\Http\Controllers\backend\AboutController;
 use App\Http\Controllers\backend\ArticleController;
 use App\Http\Controllers\backend\ProjectController;
 use App\Http\Controllers\frontend\FrontendController;
@@ -27,7 +28,9 @@ use App\Http\Controllers\dashboard\DashboardController;
 //     return view('frontend.index');
 // });
 
-Route::resource('/', FrontendController::class);
+// Route::resource('/', FrontendController::class);
+Route::get('/', [FrontendController::class, 'Frontend'])->name('frontend');
+Route::get('/detail-project/{slug}', [FrontendController::class, 'detailProject'])->name('forntend.detail-project');
 
 // Auth
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
@@ -41,6 +44,7 @@ Route::get('/dashboard', [MainController::class, 'index'])->middleware('auth');
 Route::get('/dashboard/project/checkSlug', [ProjectController::class, 'checkSlug'])->middleware('auth');
 Route::get('/dashboard/article/checkSlug', [ArticleController::class, 'checkSlug'])->middleware('auth');
 
+Route::resource('/dashboard/about', AboutController::class)->middleware('auth');
 Route::resource('/dashboard/team', TeamController::class)->middleware('auth');
 Route::resource('/dashboard/project', ProjectController::class)->middleware('auth');
 Route::resource('/dashboard/article', ArticleController::class)->middleware('auth');

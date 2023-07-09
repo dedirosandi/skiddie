@@ -1,0 +1,9 @@
+{
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "html.format.templating": true,
+    "prettier.insertPragma": true,
+    "bladeFormatter.format.wrapAttributes": "auto",
+    "bladeFormatter.format.noPhpSyntaxCheck": false,
+    "editor.formatOnType": true
+}

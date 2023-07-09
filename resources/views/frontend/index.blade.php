@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets-backend/src/images/skiddie.png') }}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets-backend/src/images/skiddie.png') }}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets-backend/src/images/skiddie.png') }}" />
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,67 +24,47 @@
 
     <link rel="stylesheet" href="{{ asset('assets-frontend/src/css/style.css') }}">
 
-    <title>Skiddie Official</title>
+    <title>Skiddie ID - Dev Apps</title>
 </head>
 
 <body>
     <main>
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light bg-transparent navbar-skiddie">
-                <div class="container">
-                    <a class="navbar-brand" href="#">
-                        <img width="150" src="{{ asset('assets-backend/src/images/skiddie.png') }}" alt="">
-                    </a>
-
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div class="navbar-nav ms-auto">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                            <a class="nav-link" href="#">Team</a>
-                            <a class="nav-link" href="#">Project</a>
-                            <a class="nav-link" href="#">Article</a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
+        @include('frontend.layouts.navbar')
 
         <section class="section-header-skiddie p-2">
             <div class="container">
                 <div class="row justify-content-between">
                     <div class="col-lg-6 mt-3 mt-lg-4 order-2 order-lg-1">
                         <div class="text-header-header text-center text-lg-start text-center text-lg-start mt-4 ">
-                            <h3 class="h1" data-aos="fade-right" data-aos-duration="2000">Solution <span
-                                    class="text-primary" data-aos="fade-right" data-aos-duration="2000">Project</span>
+                            @php
+                                $titleParts = explode(' ', $abouts->title);
+                            @endphp
+                            <h3 class="h1" data-aos="fade-right" data-aos-duration="2000">
+                                {{ $titleParts[0] }} <span class="text-primary" data-aos="fade-right"
+                                    data-aos-duration="2000">{{ $titleParts[1] }}</span>
                             </h3>
-                            <h3 class="h1 mb-4 mb-lg-0" data-aos="fade-right" data-aos-duration="2000">Develop anything
-                            </h3>
+                            <h3 class="h1 mb-4 mb-lg-0" data-aos="fade-right" data-aos-duration="2000">
+                                {{ $titleParts[2] }} {{ $titleParts[3] }}</h3>
+
                             <p class="mt-3" data-aos="fade-right" data-aos-duration="2000">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam fugit soluta minus
-                                mollitia
-                                accusamus a consequuntur qui ipsa architecto necessitatibus?
+                                {!! $abouts->description !!}
                             </p>
                         </div>
                         <div class="d-flex justify-content-center justify-content-lg-start" data-aos="fade-right"
                             data-aos-duration="2000">
-                            <button class="btn btn-skiddie py-2 px-4 my-3">
-                                View All
-                            </button>
+                            <a class="btn btn-skiddie py-2 px-4 my-3" href="mailto:{{ $abouts->contact }}">Contact
+                                Me</a>
                         </div>
                     </div>
                     <div class="col-lg-6 mt-3 mt-lg-1 order-1 order-lg-2">
-                        <img src="{{ asset('assets-frontend/images/header.svg') }}" alt="header" class="w-100"
+                        <img src="{{ asset('storage/' . $abouts->thumbnail) }}" alt="header" class="w-100"
                             data-aos="fade-down" data-aos-duration="2000">
                     </div>
                 </div>
             </div>
         </section>
 
-        <div class="title-our-team">
+        <div class="title-our-team" id="team">
             <div class="container">
                 <div class="row">
                     <h2>Our Team</h2>
@@ -89,7 +72,7 @@
             </div>
         </div>
 
-        <section class="section-our-team p-4">
+        <section class="section-our-team p-4" id="team">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -97,7 +80,8 @@
                             <div class="carousel-indicators">
                                 @foreach ($teams as $index => $team)
                                     <button type="button" data-bs-target="#carouselExampleIndicators"
-                                        data-bs-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}"
+                                        data-bs-slide-to="{{ $index }}"
+                                        class="{{ $index == 0 ? 'active' : '' }}"
                                         aria-current="{{ $index == 0 ? 'true' : 'false' }}"
                                         aria-label="Slide {{ $index + 1 }}"></button>
                                 @endforeach
@@ -112,7 +96,8 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="text-header mt-3 mt-lg-0">
-                                                    {{ $team->name }}
+                                                    {{ $team->name }} <a href=""><i
+                                                            class="bi bi-envelope"></i></a>
                                                 </div>
                                                 <div class="underlined-custom"></div>
                                                 <div class="text-slug">
@@ -138,12 +123,24 @@
 
         </section>
 
-        {{-- <section class="section-our-project">
+        <section class="section-our-project" id="project">
             <div class="header-text-project">
                 <h3 class="h2 text-center">Our Project</h3>
             </div>
             <div class="container">
                 <div class="row justify-content-center">
+                    @php
+                        function getProgressBarColor($percentage)
+                        {
+                            if ($percentage < 40) {
+                                return 'bg-success'; // kelas warna merah untuk presentase di bawah 30%
+                            } elseif ($percentage < 70) {
+                                return 'bg-warning'; // kelas warna kuning untuk presentase di antara 30% dan 70%
+                            } else {
+                                return 'bg-danger'; // kelas warna hijau untuk presentase di atas 70%
+                            }
+                        }
+                    @endphp
                     @foreach ($projects as $project)
                         <div class="col-sm-12 col-lg-4">
                             <div class="card-custom">
@@ -154,7 +151,7 @@
                                     @foreach ($project->users as $user)
                                         <div class="img-team-card">
                                             <img src="{{ asset('storage/' . $user->profile_picture) }}"
-                                                alt="dedirosandi" class="img-fluid">
+                                                alt="{{ $user->name }}" class="img-fluid">
                                         </div>
                                     @endforeach
                                 </div>
@@ -162,7 +159,7 @@
                                     @if ($index == 0)
                                         <div class="image-project mb-2">
                                             <img src="{{ asset('storage/' . $image->image) }}" alt="dedirosandi"
-                                                class="img-fluid">
+                                                class="img-fluid rounded-4">
                                         </div>
                                     @endif
                                 @endforeach
@@ -170,28 +167,27 @@
                                     <h3> {{ $project->name }} </h3>
                                 </div>
 
+
+
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="difficulty mt-2">
                                             Difficult Project
                                         </div>
                                         <div class="rating">
-                                            <span>
-                                                <img src="{{ asset('assets-frontend/images/star.png') }}"
-                                                    alt="rating" class="img-rating">
-                                                <img src="{{ asset('assets-frontend/images/star.png') }}"
-                                                    alt="rating" class="img-rating">
-                                                <img src="{{ asset('assets-frontend/images/star.png') }}"
-                                                    alt="rating" class="img-rating">
-                                                <img src="{{ asset('assets-frontend/images/star.png') }}"
-                                                    alt="rating" class="img-rating">
-                                            </span>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-striped {{ getProgressBarColor($project->difficult) }}"
+                                                    role="progressbar" style="width: {{ $project->difficult }}%"
+                                                    aria-valuenow="{{ $project->difficult }}" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
+
                                 <div class="d-flex justify-content-end mt-4 mb-3">
-                                    <a href="detail/{{ $project->slug }}"
+                                    <a href="/detail-project/{{ $project->slug }}"
                                         class="btn btn-sm btn-project">Selengkapnya</a>
                                 </div>
                             </div>
@@ -200,7 +196,7 @@
 
                 </div>
             </div>
-        </section> --}}
+        </section>
 
         {{-- <section class="section-artikel justify-content-center">
             <div class="title text-center">
@@ -210,29 +206,28 @@
             <div class="artikel">
                 <div class="container">
                     <div class="row">
-
-                        <div class="col-sm-6 col-lg-4 mt-5">
-                            <div class="card-custom-article">
-                                <div class="category">Kategori Artikel</div>
-                                <div class="img-artikel-card">
-                                    <img src="{{ asset('assets-frontend/images/artikel-1.png') }}" alt="artikel"
-                                        class="img-fluid rounded-4">
-                                </div>
-                                <div class="author my-3">
-                                    <span>Abyghails, 1 Februari 2023</span>
-                                </div>
-                                <div class="title-artikel">
-                                    <h3>Cara menjadi Programmer mudah di era Digital</h3>
-                                </div>
-                                <div class="content-highlight mt-3">
-                                    <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Tenetur
-                                        officiis debitis
-                                        inventore deleniti
-                                        iste laborum quisquam, libero excepturi est officia?</p>
+                        @foreach ($articles as $article)
+                            <div class="col-sm-6 col-lg-4 mt-5">
+                                <div class="card-custom-article">
+                                    <div class="category"> {{ $article->category }} </div>
+                                    <div class="img-artikel-card">
+                                        <img src="{{ asset('storage/' . $article->thumbnail) }}" alt="artikel"
+                                            class="img-fluid rounded-4">
+                                    </div>
+                                    <div class="author my-3">
+                                        <span>{{ $article->user->name }},
+                                            {{ $article->created_at->isoFormat('D MMMM YYYY') }}</span>
+                                    </div>
+                                    <div class="title-artikel">
+                                        <h3>{{ $article->title }}</h3>
+                                    </div>
+                                    <div class="content-highlight mt-3">
+                                        <p class="text-muted">{!! Str::limit(html_entity_decode(strip_tags($article->body)), 200) !!}...</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
+
 
                     </div>
                 </div>
@@ -275,17 +270,17 @@
         </section> --}}
 
 
-        <footer class="section-footer p-3">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 col-lg-12">
-                        <p>&copy; 2023 Skiddie Official. All rights reserved.</p>
-                    </div>
-
-                </div>
-            </div>
-        </footer>
     </main>
+    <footer class="section-footer p-3 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <p>&copy; 2023 Skiddie Official. All rights reserved.</p>
+                </div>
+
+            </div>
+        </div>
+    </footer>
 
     <!-- script -->
     <script src="{{ asset('assets-frontend/vendor/bootstrap-5/js/bootstrap.bundle.js') }}"></script>
