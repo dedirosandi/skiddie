@@ -252,7 +252,7 @@
             </div>
         </section>
 
-        <section class="section-artikel justify-content-center">
+        {{-- <section class="section-artikel justify-content-center">
             <div class="title text-center">
                 <h3>Article</h3>
             </div>
@@ -286,7 +286,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
 
         {{-- <section class="section-contact">
             <div class="container">
