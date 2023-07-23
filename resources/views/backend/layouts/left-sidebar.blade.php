@@ -19,7 +19,7 @@
                 </li>
                 <li>
                     <a href="javascript:;"
-                        class="dropdown-toggle {{ Request::is('dashboard/project*', 'dashboard/about*', 'dashboard/article*') ? 'active' : '' }}">
+                        class="dropdown-toggle {{ Request::is('dashboard/project*', 'dashboard/about*', 'dashboard/article*', 'dashboard/service*') ? 'active' : '' }}">
                         <span class="micon bi bi-front"></span><span class="mtext">Frontend</span>
                     </a>
                     <ul class="submenu">
@@ -29,6 +29,8 @@
                                 href="/dashboard/project">Project</a></li>
                         <li><a class="{{ Request::is('dashboard/article*') ? 'active' : '' }}"
                                 href="/dashboard/article">Article</a></li>
+                        <li><a class="{{ Request::is('dashboard/service*') ? 'active' : '' }}"
+                                href="/dashboard/service">Service</a></li>
                     </ul>
                 </li>
                 <li>

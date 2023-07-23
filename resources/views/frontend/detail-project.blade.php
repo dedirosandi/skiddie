@@ -76,7 +76,7 @@
             <div class="container mt-5">
                 <div class="header-detail">
                     <div class="row">
-                        <div class="col-lg-8">
+                        <div class="col-lg-9">
                             <div class="row">
                                 <div class="col-md-6">
                                     @php
@@ -86,32 +86,35 @@
                                         @if ($index == 0)
                                             <img id="main-image" src="{{ asset('storage/' . $image->image) }}"
                                                 alt="" class="img-fluid rounded-5">
+                                        @else
+                                            <div class="d-none">
+                                                @php
+                                                    $firstImage = false;
+                                                @endphp
+                                            </div>
                                         @endif
                                     @endforeach
                                 </div>
                                 <div class="col-md-6">
                                     <div class="row">
                                         @foreach ($project->project_images as $image)
-                                            @if ($firstImage)
-                                                @php
-                                                    $firstImage = false;
-                                                @endphp
-                                            @else
-                                                <div class="col-sm-3 col-md-6">
-                                                    <img src="{{ asset('storage/' . $image->image) }}" alt=""
-                                                        class="img-fluid rounded-5 py-1 px-1"
-                                                        onclick="changeMainImage('{{ asset('storage/' . $image->image) }}')">
-                                                </div>
-                                            @endif
+                                            <div class="col-sm-3 col-md-6">
+                                                <img src="{{ asset('storage/' . $image->image) }}" alt=""
+                                                    class="img-fluid rounded-5 py-1 px-1"
+                                                    onclick="changeMainImage('{{ asset('storage/' . $image->image) }}')"
+                                                    @if ($firstImage) id="main-image"
+                            @php
+                                $firstImage = false;
+                            @endphp @endif>
+                                            </div>
                                         @endforeach
                                     </div>
                                 </div>
                             </div>
+
                         </div>
 
-
-
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <div class="card card-custom card-sale">
                                 @php
                                     function getProgressBarColor($percentage)

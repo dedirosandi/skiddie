@@ -19,6 +19,19 @@
 
     <!-- jquery -->
     <script src="{{ asset('assets-frontend/vendor/jquery/jquery.js') }}"></script>
+    <style>
+        .zoom {
+            transition: transform .2s;
+            /* Animation */
+
+            margin: 0 auto;
+        }
+
+        .zoom:hover {
+            transform: scale(1.1);
+            /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+        }
+    </style>
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -123,6 +136,35 @@
 
         </section>
 
+        <section class="section-artikel justify-content-center" id="service">
+            <div class="title text-center">
+                <h3>Our Services</h3>
+            </div>
+
+            <div class="artikel">
+                <div class="container">
+                    <div class="row">
+                        @foreach ($services as $service)
+                            <div class="col-sm-6 col-lg-4 mt-5">
+                                <div class="card-custom-article">
+                                    <div class="img-artikel-card">
+                                        <img src="{{ asset('storage/' . $service->thumbnail) }}" alt="artikel"
+                                            class="img-fluid rounded-4 zoom">
+                                    </div>
+                                    <div class="title-artikel mt-3">
+                                        <h3>{{ $service->title }}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
         <section class="section-our-project" id="project">
             <div class="header-text-project">
                 <h3 class="h2 text-center">Our Project</h3>
@@ -150,16 +192,19 @@
                                 <div class="team mb-3">
                                     @foreach ($project->users as $user)
                                         <div class="img-team-card">
-                                            <img src="{{ asset('storage/' . $user->profile_picture) }}"
-                                                alt="{{ $user->name }}" class="img-fluid">
+
+                                            <img class="img-fluid"
+                                                src="{{ asset('storage/' . $user->profile_picture) }}"
+                                                alt="{{ $user->name }}"
+                                                style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
                                         </div>
                                     @endforeach
                                 </div>
                                 @foreach ($project->project_images as $index => $image)
                                     @if ($index == 0)
                                         <div class="image-project mb-2">
-                                            <img src="{{ asset('storage/' . $image->image) }}" alt="dedirosandi"
-                                                class="img-fluid rounded-4">
+                                            <img src="{{ asset('storage/' . $image->image) }}"
+                                                class="img-fluid rounded-4 zoom">
                                         </div>
                                     @endif
                                 @endforeach
@@ -198,7 +243,7 @@
             </div>
         </section>
 
-        {{-- <section class="section-artikel justify-content-center">
+        <section class="section-artikel justify-content-center">
             <div class="title text-center">
                 <h3>Article</h3>
             </div>
@@ -212,7 +257,7 @@
                                     <div class="category"> {{ $article->category }} </div>
                                     <div class="img-artikel-card">
                                         <img src="{{ asset('storage/' . $article->thumbnail) }}" alt="artikel"
-                                            class="img-fluid rounded-4">
+                                            class="img-fluid rounded-4 zoom">
                                     </div>
                                     <div class="author my-3">
                                         <span>{{ $article->user->name }},
@@ -232,7 +277,7 @@
                     </div>
                 </div>
             </div>
-        </section> --}}
+        </section>
 
         {{-- <section class="section-contact">
             <div class="container">
@@ -299,6 +344,7 @@
             });
         });
     </script>
+
 </body>
 
 </html>
