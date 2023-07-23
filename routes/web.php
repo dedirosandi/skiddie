@@ -37,8 +37,8 @@ Route::get('/detail-project/{slug}', [FrontendController::class, 'detailProject'
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout ', [LogoutController::class, 'logout']);
-Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
-Route::post('/register', [RegisterController::class, 'store']);
+// Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+// Route::post('/register', [RegisterController::class, 'store']);
 
 // Dashboard
 Route::get('/dashboard', [MainController::class, 'index'])->middleware('auth');
