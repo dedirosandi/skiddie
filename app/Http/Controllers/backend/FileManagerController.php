@@ -17,17 +17,16 @@ class FileManagerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-{
-    // $filemanagers = FileManager::all();
-    $filemanagers = FileManager::where('uploaded_by', Auth::id())->get();
+    {
+        $filemanagers = FileManager::all();
+        // $filemanagers = FileManager::where('uploaded_by', Auth::id())->get();
 
-    foreach ($filemanagers as $filemanager) {
-        $filemanager->shortUrl = $filemanager->shortenLink();
-        
+        foreach ($filemanagers as $filemanager) {
+            $filemanager->shortUrl = $filemanager->shortenLink();
+        }
+
+        return view('backend.filemanager.index', compact('filemanagers'));
     }
-
-    return view('backend.filemanager.index', compact('filemanagers'));
-}
 
 
     /**
@@ -99,11 +98,11 @@ class FileManagerController extends Controller
      * @param  \App\Models\backend\FileManager  $fileManager
      * @return \Illuminate\Http\Response
      */
-   public function edit($id)
-{
-    $fileManager = FileManager::findOrFail($id);
-    return view('backend.filemanager.edit', compact('fileManager'));
-}
+    public function edit($id)
+    {
+        $fileManager = FileManager::findOrFail($id);
+        return view('backend.filemanager.edit', compact('fileManager'));
+    }
 
     /**
      * Update the specified resource in storage.
@@ -112,51 +111,51 @@ class FileManagerController extends Controller
      * @param  \App\Models\backend\FileManager  $fileManager
      * @return \Illuminate\Http\Response
      */
-   public function update(Request $request, $id)
-{
-    // Validasi input
-    $request->validate([
-        'file' => 'nullable|file|max:20480',
-        'file_description' => 'nullable|string',
-    ]);
+    public function update(Request $request, $id)
+    {
+        // Validasi input
+        $request->validate([
+            'file' => 'nullable|file|max:20480',
+            'file_description' => 'nullable|string',
+        ]);
 
-    // Cari instance FileManager berdasarkan ID
-    $fileManager = FileManager::find($id);
+        // Cari instance FileManager berdasarkan ID
+        $fileManager = FileManager::find($id);
 
-    if (!$fileManager) {
-        return redirect('/dashboard/filemanager')->with('error', 'Data tidak ditemukan.');
+        if (!$fileManager) {
+            return redirect('/dashboard/filemanager')->with('error', 'Data tidak ditemukan.');
+        }
+
+        // Cek apakah ada file baru yang diunggah
+        if ($request->hasFile('file')) {
+            // Hapus file lama
+            Storage::delete($fileManager->file_path);
+
+            // Upload file baru
+            $file = $request->file('file');
+            $fileName = $file->getClientOriginalName();
+            $filePath = $file->store('file_managers');
+            $fileType = $file->getClientOriginalExtension();
+            $fileSize = $file->getSize();
+
+            // Update informasi file dalam database
+            $fileManager->file_name = $fileName;
+            $fileManager->file_path = $filePath;
+            $fileManager->file_type = $fileType;
+            $fileManager->file_size = $fileSize;
+        }
+
+        // Update informasi file_description jika ada perubahan
+        if ($request->filled('file_description')) {
+            $fileManager->file_description = $request->file_description;
+        }
+
+        // Simpan perubahan pada model
+        $fileManager->save();
+
+        // Redirect dengan pesan sukses
+        return redirect('/dashboard/filemanager')->with('success', 'Data berhasil diperbarui.');
     }
-
-    // Cek apakah ada file baru yang diunggah
-    if ($request->hasFile('file')) {
-        // Hapus file lama
-        Storage::delete($fileManager->file_path);
-
-        // Upload file baru
-        $file = $request->file('file');
-        $fileName = $file->getClientOriginalName();
-        $filePath = $file->store('file_managers');
-        $fileType = $file->getClientOriginalExtension();
-        $fileSize = $file->getSize();
-
-        // Update informasi file dalam database
-        $fileManager->file_name = $fileName;
-        $fileManager->file_path = $filePath;
-        $fileManager->file_type = $fileType;
-        $fileManager->file_size = $fileSize;
-    }
-
-    // Update informasi file_description jika ada perubahan
-    if ($request->filled('file_description')) {
-        $fileManager->file_description = $request->file_description;
-    }
-
-    // Simpan perubahan pada model
-    $fileManager->save();
-
-    // Redirect dengan pesan sukses
-    return redirect('/dashboard/filemanager')->with('success', 'Data berhasil diperbarui.');
-}
 
 
 
@@ -168,35 +167,35 @@ class FileManagerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-{
-    // Temukan FileManager berdasarkan ID
-    $fileManager = FileManager::find($id);
+    {
+        // Temukan FileManager berdasarkan ID
+        $fileManager = FileManager::find($id);
 
-    if (!$fileManager) {
-        // Jika FileManager tidak ditemukan, redirect dengan pesan error
-        return redirect('/dashboard/filemanager')->with('error', 'Data tidak ditemukan.');
+        if (!$fileManager) {
+            // Jika FileManager tidak ditemukan, redirect dengan pesan error
+            return redirect('/dashboard/filemanager')->with('error', 'Data tidak ditemukan.');
+        }
+
+        // Hapus file terkait
+        Storage::delete($fileManager->file_path);
+
+        // Hapus data FileManager dari database
+        $fileManager->delete();
+
+        // Redirect dengan pesan sukses
+        return redirect('/dashboard/filemanager')->with('success', 'Data berhasil dihapus.');
     }
-
-    // Hapus file terkait
-    Storage::delete($fileManager->file_path);
-
-    // Hapus data FileManager dari database
-    $fileManager->delete();
-
-    // Redirect dengan pesan sukses
-    return redirect('/dashboard/filemanager')->with('success', 'Data berhasil dihapus.');
-}
 
 
     public function download(FileManager $fileManager)
-{
-    $filePath = Storage::path($fileManager->file_path);
-    $fileName = $fileManager->file_name;
+    {
+        $filePath = Storage::path($fileManager->file_path);
+        $fileName = $fileManager->file_name;
 
-    return response()->download($filePath, $fileName);
-}
+        return response()->download($filePath, $fileName);
+    }
 
-public function shortenLink(FileManager $fileManager)
+    public function shortenLink(FileManager $fileManager)
     {
         $shortUrl = $fileManager->shortenLink();
 
