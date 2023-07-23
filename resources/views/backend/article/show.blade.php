@@ -36,6 +36,7 @@
                                 </h4>
                                 <p>
                                 <div id="app">
+<<<<<<< Updated upstream
                                     <template v-if="!showFullArticle">
                                         <p v-html="truncatedText"></p>
                                         <button class="btn btn-secondary" @click="showFullArticle = true"
@@ -52,7 +53,18 @@
 
 
 
+=======
+                                    <p v-if="!showFullArticle">{{ substr($article->body, 0, 200) }}...</p>
+                                    <p v-else>{{ $article->body }}</p>
+                                    <button class="btn btn-secondary" @click="showFullArticle = true"
+                                        v-if="!showFullArticle">Read More</button>
+                                </div>
+>>>>>>> Stashed changes
                                 </p>
+                                <div>
+
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -65,7 +77,11 @@
                                         <li>
                                             <h4>
                                                 <a href="/dashboard/article/{{ $recent->slug }}">
+<<<<<<< Updated upstream
                                                     {{ substr($recent->title, 0, 25) }}... </a>
+=======
+                                                    {{ substr($article->title, 0, 25) }}... </a>
+>>>>>>> Stashed changes
                                             </h4>
                                             <span>{{ $recent->category }}</span>
                                         </li>
@@ -103,6 +119,18 @@
             },
             created() {
                 this.calculateContent();
+            }
+        });
+    </script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                showFullArticle: false
             }
         });
     </script>

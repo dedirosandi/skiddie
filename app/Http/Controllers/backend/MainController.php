@@ -18,11 +18,19 @@ class MainController extends Controller
     public function index()
     {
         //
+<<<<<<< Updated upstream
         $CountTeam = User::count();
         $CountProject = Project::count();
         $CountArticle = Article::count();
 
         return view('backend.main.index', compact('CountTeam','CountProject','CountArticle'));
+=======
+        $jumlahTeam = User::count();
+        $jumlahProject = Project::count();
+        $jumlahArticle = Article::count();
+
+        return view('backend.main.index', compact('jumlahTeam','jumlahProject','jumlahArticle'));
+>>>>>>> Stashed changes
     }
 
     /**
