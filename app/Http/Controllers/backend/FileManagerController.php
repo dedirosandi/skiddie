@@ -17,9 +17,13 @@ class FileManagerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+
     {
         $filemanagers = FileManager::all();
         // $filemanagers = FileManager::where('uploaded_by', Auth::id())->get();
+
+
+  
 
         foreach ($filemanagers as $filemanager) {
             $filemanager->shortUrl = $filemanager->shortenLink();
