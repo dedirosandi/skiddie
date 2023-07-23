@@ -188,6 +188,9 @@
                                                 @elseif (strcasecmp($item, 'VUE') === 0)
                                                     <span> <img src="{{ asset('icon/vue-js-icon.svg') }}"
                                                             alt="" class="mb-3"></span>
+                                                @elseif (strcasecmp($item, 'FIGMA') === 0)
+                                                    <span> <img src="{{ asset('icon/figma.svg') }}" alt=""
+                                                            class="mb-3"></span>
                                                 @else
                                                 @endif
                                             @endforeach
