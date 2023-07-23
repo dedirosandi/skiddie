@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <title>@yield('title', 'Skiddie ID')</title>
+    <meta name="robots" content="noindex, nofollow">
 
     <link rel="apple-touch-icon" sizes="180x180"
         href="{{ asset('assets-backend/vendors/images/apple-touch-icon.png') }}" />
