@@ -36,6 +36,15 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('assets-frontend/src/css/style.css') }}">
+    <meta name="keywords"
+        content="pengembangan aplikasi, desain aplikasi, solusi teknologi, layanan pengembangan web, pengembangan aplikasi mobile, aplikasi kustom, inovasi teknologi, keamanan aplikasi, UI/UX desain, pengalaman pengguna, manajemen proyek teknologi, integrasi sistem, optimalisasi kinerja aplikasi, pemeliharaan aplikasi, analisis kebutuhan aplikasi">
+
+    <meta name="robots" content="index,follow">
+    <meta property="og:image" content="{{ asset('storage/' . $abouts->thumbnail) }}">
+
+    <link rel="canonical" href="https://skiddie.id">
+    <meta name="description" content="{!! strip_tags($abouts->description) !!}">
+    <meta name="author" content="@foreach ($teams as $team){{ $team->name }}, @endforeach">
 
     <title>Skiddie ID - Dev Apps</title>
 </head>
