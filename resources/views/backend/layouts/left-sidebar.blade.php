@@ -1,6 +1,6 @@
 <div class="left-side-bar">
     <div class="brand-logo">
-        <a href="index.html">
+        <a href="/dashboard">
             <img src="{{ asset('assets-backend/src/images/skiddie.png') }}" alt="" class="dark-logo" />
             <img src="{{ asset('assets-backend/src/images/skiddie.png') }}" alt="" class="light-logo" />
         </a>
