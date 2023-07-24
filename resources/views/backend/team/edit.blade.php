@@ -32,6 +32,11 @@
                         placeholder="Full Stack Web Developer" />
                 </div>
                 <div class="form-group">
+                    <label>Linkedin</label>
+                    <input class="form-control" name="linkedin" placeholder="Linkedin"
+                        value="{{ old('linkedin', $teams->linkedin) }}" type="url" />
+                </div>
+                <div class="form-group">
                     <label>Email</label>
                     <input class="form-control" name="email" placeholder="Email" value="{{ old('email', $teams->email) }}"
                         type="email" />

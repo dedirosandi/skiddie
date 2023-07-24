@@ -24,6 +24,7 @@ class User extends Authenticatable
         'name',
         'username',
         'email',
+        'linkedin',
         'password',
         'as',
         'description',
@@ -58,6 +59,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(FileManager::class, 'uploaded_by');
     }
-
-   
 }
