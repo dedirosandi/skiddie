@@ -56,7 +56,7 @@
                 </div>
             </div>
 
-            <div class="container mt-3">
+            <div class="container mt-2">
                 <div class="header-detail">
                     <div class="row">
                         <div class="col-lg-9">
