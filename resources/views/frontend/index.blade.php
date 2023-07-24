@@ -262,7 +262,7 @@
             </div>
         </section>
 
-        {{-- <section class="section-artikel justify-content-center">
+        <section class="section-artikel justify-content-center">
             <div class="title text-center">
                 <h3>Article</h3>
             </div>
@@ -276,18 +276,21 @@
                                     <div class="category"> {{ $article->category }} </div>
                                     <div class="img-artikel-card">
                                         <img src="{{ asset('storage/' . $article->thumbnail) }}" alt="artikel"
-                                            class="img-fluid rounded-4 zoom">
+                                            class="img-fluid rounded-4">
                                     </div>
                                     <div class="author my-3">
                                         <span>{{ $article->user->name }},
                                             {{ $article->created_at->isoFormat('D MMMM YYYY') }}</span>
                                     </div>
                                     <div class="title-artikel">
-                                        <h3>{{ $article->title }}</h3>
+                                        <a href="detail-article/{{ $article->slug }}"
+                                            style="text-decoration: none; color: inherit;">
+                                            <h3>{{ $article->title }}</h3>
+                                        </a>
                                     </div>
-                                    <div class="content-highlight mt-3">
+                                    {{-- <div class="content-highlight mt-3">
                                         <p class="text-muted">{!! Str::limit(html_entity_decode(strip_tags($article->body)), 200) !!}...</p>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         @endforeach
@@ -296,7 +299,7 @@
                     </div>
                 </div>
             </div>
-        </section> --}}
+        </section>
 
         {{-- <section class="section-contact">
             <div class="container">

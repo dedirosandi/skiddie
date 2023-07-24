@@ -34,4 +34,15 @@ class FrontendController extends Controller
 
         return view('frontend.detail-project', compact('project'));
     }
+    public function detailArticle($slug)
+    {
+        $all_article = Article::all();
+        $article = Article::where('slug', $slug)->first();
+
+        if (!$article) {
+            abort(404); // Tampilkan halaman 404 jika project tidak ditemukan
+        }
+
+        return view('frontend.detail-article', compact('article', 'all_article'));
+    }
 }
