@@ -72,7 +72,7 @@ class ServiceController extends Controller
     {
         //
         // $services = Service::first();
-        $services = Service::where('id', $slug)->firstOrFail();
+        $services = Service::where('id', $id)->firstOrFail();
         return view('backend.service.edit', compact('services'));
     }
 
