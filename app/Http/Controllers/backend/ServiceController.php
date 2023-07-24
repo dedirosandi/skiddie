@@ -84,7 +84,6 @@ class ServiceController extends Controller
     public function update(Request $request, Service $service)
     {
         //
-        //
         $rule = [
             'title' => 'required',
             'thumbnail' => 'image',
@@ -99,7 +98,8 @@ class ServiceController extends Controller
             $validateData['thumbnail'] = $request->file('thumbnail')->store('image/thumbnail-service');
             # code...
         }
-        Service::first()->update($validateData);
+
+        Service::where('id', $service->id)->update($validateData);
         return redirect('/dashboard/service');
     }
 
