@@ -288,9 +288,9 @@
                                             <h3>{{ $article->title }}</h3>
                                         </a>
                                     </div>
-                                    {{-- <div class="content-highlight mt-3">
-                                        <p class="text-muted">{!! Str::limit(html_entity_decode(strip_tags($article->body)), 200) !!}...</p>
-                                    </div> --}}
+                                    <div class="content-highlight mt-3">
+                                        <p class="text-muted">{!! Str::limit(html_entity_decode(strip_tags($article->body)), 150) !!}...</p>
+                                    </div>
                                 </div>
                             </div>
                         @endforeach
