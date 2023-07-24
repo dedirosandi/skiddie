@@ -68,12 +68,10 @@ class ServiceController extends Controller
      * @param  \App\Models\backend\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $service, $id)
+    public function edit(Service $service)
     {
         //
-        // $services = Service::first();
-        $services = Service::where('id', $id)->firstOrFail();
-        return view('backend.service.edit', compact('services'));
+        return view('backend.service.edit', compact('service'));
     }
 
     /**

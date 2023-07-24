@@ -12,18 +12,18 @@
             </div>
         </div>
         <div class="pd-20 card-box mb-30">
-            <form action="/dashboard/service/{{ $services->id }}" method="post" enctype="multipart/form-data">
+            <form action="/dashboard/service/{{ $service->id }}" method="post" enctype="multipart/form-data">
                 @method('put')
                 @csrf
                 <div class="form-group">
                     <label>Service Title</label>
                     <input class="form-control" type="text" name="title" id="title"
-                        value="{{ old('title') ?? $services->title }}" placeholder="Sistem Akademik Sekolah" />
+                        value="{{ old('title') ?? $service->title }}" placeholder="Sistem Akademik Sekolah" />
                 </div>
                 <div class="form-group">
                     <label>Service Thumbnail</label>
                     <input type="file" name="thumbnail" class="form-control-file form-control height-auto" />
-                    <input type="hidden" name="oldImage" value="{{ $services->thumbnail }}">
+                    <input type="hidden" name="oldImage" value="{{ $service->thumbnail }}">
                 </div>
 
                 <div class="row">
