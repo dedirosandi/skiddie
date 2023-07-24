@@ -44,11 +44,7 @@
             <div class="card-box height-100-p widget-style3">
                 <div class="d-flex flex-wrap">
                     <div class="widget-data">
-<<<<<<< Updated upstream
                         <div class="weight-700 font-24 text-dark">{{ $CountArticle }}</div>
-=======
-                        <div class="weight-700 font-24 text-dark"> {{ $jumlahArticle }} </div>
->>>>>>> Stashed changes
                         <div class="font-14 text-secondary weight-500">
                             Article
                         </div>
