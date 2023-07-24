@@ -71,7 +71,7 @@
 
                         </div>
 
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 d-none d-lg-block">
                             <div class="card card-custom card-sale">
                                 <div class="difficulty mt-2 mb-3">
                                     Recent Post
@@ -87,7 +87,7 @@
             </div>
             <div class="container mt-2 article mb-5">
                 <div class="row">
-                    <div class="col-8 mt-2">
+                    <div class="col-md-12 col-sm-12 col-lg-8 mt-2">
                         <p>
                             {!! $article->body !!}
                         </p>
