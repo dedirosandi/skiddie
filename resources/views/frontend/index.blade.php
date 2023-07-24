@@ -8,6 +8,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets-backend/src/images/skiddie.png') }}" />
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets-backend/src/images/skiddie.png') }}" />
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets-backend/src/images/skiddie.png') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -127,8 +128,17 @@
                                                 </div>
                                                 <div class="text-content">
                                                     {{ $team->description }}
+                                                    <div class="mt-3">
+                                                        <a style="text-decoration: none;color: #ffffff;"
+                                                            href="{{ $team->linkedin }}" target="_blank">
+                                                            <i class="fab fa-linkedin fa-2x"></i>
+                                                        </a>
+                                                        <a style="text-decoration: none; color: #ffffff;"
+                                                            href="mailto:{{ $team->email }}">
+                                                            <i class="fas fa-envelope fa-2x"></i>
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                                <!-- Tambahkan konten lain yang diinginkan -->
                                             </div>
                                         </div>
                                     </div>
