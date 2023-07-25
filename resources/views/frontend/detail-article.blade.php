@@ -26,6 +26,8 @@
     <meta property="og:image" content="{{ asset('storage/' . $article->thumbnail) }}">
     <meta name="description" content="{!! strip_tags($article->body) !!}">
     <meta name="author" content="{{ $article->user->name }}">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1132597597785133"
+     crossorigin="anonymous"></script>
     <title>Skiddie ID - Dev Apps - {{ $article->title }} </title>
 </head>
 

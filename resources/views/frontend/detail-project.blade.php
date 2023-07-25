@@ -24,6 +24,8 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('assets-frontend/src/css/style.css') }}">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1132597597785133"
+        crossorigin="anonymous"></script>
 
     <title>Skiddie ID - Dev Apps - {{ $project->name }} </title>
 </head>

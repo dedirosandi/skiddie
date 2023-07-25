@@ -17,6 +17,8 @@
 
     <!-- bootstrap -->
     <link rel="stylesheet" href="{{ asset('assets-frontend/vendor/bootstrap-5/css/bootstrap.css') }}">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1132597597785133"
+        crossorigin="anonymous"></script>
 
     <!-- jquery -->
     <script src="{{ asset('assets-frontend/vendor/jquery/jquery.js') }}"></script>
