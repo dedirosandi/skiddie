@@ -21,7 +21,9 @@ class ArticleController extends Controller
     public function index()
     {
         //
-        return view('backend.article.index', ['articles' => Article::all()]);
+        // return view('backend.article.index', ['articles' => Article::all()]);
+        return view('backend.article.index', ['articles' => Article::orderBy('created_at', 'desc')->get()]);
+
     }
 
     /**

@@ -26,8 +26,8 @@
     <meta property="og:image" content="{{ asset('storage/' . $article->thumbnail) }}">
     <meta name="description" content="{!! strip_tags($article->body) !!}">
     <meta name="author" content="{{ $article->user->name }}">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1132597597785133"
-     crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9332769907105662"
+        crossorigin="anonymous"></script>
     <title>Skiddie ID - Dev Apps - {{ $article->title }} </title>
 </head>
 
@@ -40,11 +40,11 @@
                         <img width="100" src="{{ asset('assets-backend/src/images/skiddie.png') }}" alt="">
                     </a>
 
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                         aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
-                    </button>
+                    </button> -->
                 </div>
             </nav>
         </div>
@@ -52,22 +52,20 @@
             <div class="container">
                 <h3 class="h4 text-bold"> {{ $article->title }} </h3>
                 <div class="item-header mt-2">
-                    Category : <span class="icon-item badge bg-danger">
-                        {{ $article->category }}
+                    <span>{{ $article->user->name }},
+                        {{ $article->created_at->isoFormat('D MMMM YYYY') }} • {{ $article->category }} </span>
                     </span>
                 </div>
             </div>
 
-            <div class="container mt-2">
+            <div class="container mt-3">
                 <div class="header-detail">
                     <div class="row">
                         <div class="col-lg-9">
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="card card-custom">
-                                        <img id="main-image" src="{{ asset('storage/' . $article->thumbnail) }}"
-                                            alt="" class="img-fluid rounded-5">
-                                    </div>
+                                    <img id="main-image" src="{{ asset('storage/' . $article->thumbnail) }}"
+                                        alt="" class="img-fluid rounded-5">
                                 </div>
                             </div>
 
@@ -79,8 +77,16 @@
                                     Recent Post
                                 </div>
                                 @foreach ($all_article as $article)
-                                    <a style="text-decoration: none;color:inherit"
-                                        href="">{!! Str::limit(html_entity_decode(strip_tags($article->title)), 15) !!}...</a>
+                                    <div class="row">
+                                        <div class="col-12 mt-2">
+                                            <a style="text-decoration: none;color:inherit" href="{{ $article->slug }}">
+                                                <img id="main-image"
+                                                    src="{{ asset('storage/' . $article->thumbnail) }}" alt=""
+                                                    class="img-fluid rounded-5 shadow-2">
+                                            </a>
+
+                                        </div>
+                                    </div>
                                 @endforeach
                             </div>
                         </div>

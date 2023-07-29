@@ -24,7 +24,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('assets-frontend/src/css/style.css') }}">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1132597597785133"
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9332769907105662"
         crossorigin="anonymous"></script>
 
     <title>Skiddie ID - Dev Apps - {{ $project->name }} </title>
@@ -39,13 +39,13 @@
                         <img width="100" src="{{ asset('assets-backend/src/images/skiddie.png') }}" alt="">
                     </a>
 
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                         aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     @if (!Request::is('detail-project/*'))
-                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div class="navbar-nav ms-auto">
                                 <a class="nav-link active" aria-current="page" href="#">Home</a>
                                 <a class="nav-link" href="#team">Team</a>
@@ -53,7 +53,7 @@
                                 {{-- <a class="nav-link" href="#">Article</a> --}}
                             </div>
                         </div>
-                    @endif
+@endif -->
                 </div>
             </nav>
         </div>
@@ -75,152 +75,78 @@
                 </div>
             </div>
 
+
             <div class="container mt-5">
                 <div class="header-detail">
+                    <!--  -->
                     <div class="row">
-                        <div class="col-lg-9">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    @php
-                                        $firstImage = true;
-                                    @endphp
-                                    @foreach ($project->project_images as $index => $image)
-                                        @if ($index == 0)
+                    <div class="col-lg-8" data-aos="zoom-in">
+                        @php
+                                $firstImage = true;
+                            @endphp
+                            @foreach ($project->project_images as $index => $image)
+                                @if ($index == 0)
+                            <img :src="photos[activePhoto].url" :key="photos[activePhoto].id" class="w-100 main-image"
+                                alt="" />
+                                @else
+                                 <div class="d-none">
+                                        @php
+                                            $firstImage = false;
+                                        @endphp
+                                    </div>
+                                @endif
+                            @endforeach
+                       
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="row">
+                            <div class="col-3 col-lg-12 mt-2 mt-lg-0" v-for="(photo, index) in photos"
+                                :key="photo.id" data-aos="zoom-in" data-aos-delay="100">
+                                <a href="#" @click="changeActive(index)">
+                                    <img :src="photo.url" class="w-100 thumbnail-image"
+                                        :class="{ active: index == activePhoto }" alt="" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <!--  -->
+                    <div class="row">
+                        <div class="col-lg-8">
+                            @php
+                                $firstImage = true;
+                            @endphp
+                            @foreach ($project->project_images as $index => $image)
+                                @if ($index == 0)
+                                    <div class="row">
+                                        <div class="col-3 col-lg-12 mt-2 mt-lg-0">
                                             <img id="main-image" src="{{ asset('storage/' . $image->image) }}"
                                                 alt="" class="img-fluid rounded-5">
-                                        @else
-                                            <div class="d-none">
-                                                @php
-                                                    $firstImage = false;
-                                                @endphp
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        @foreach ($project->project_images as $image)
-                                            <div class="col-sm-3 col-md-6">
-                                                <img src="{{ asset('storage/' . $image->image) }}" alt=""
-                                                    class="img-fluid rounded-5 py-1 px-1"
-                                                    onclick="changeMainImage('{{ asset('storage/' . $image->image) }}')"
-                                                    @if ($firstImage) id="main-image"
-                            @php
-                                $firstImage = false;
-                            @endphp @endif>
-                                            </div>
-                                        @endforeach
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-
+                                @else
+                                    <div class="d-none">
+                                        @php
+                                            $firstImage = false;
+                                        @endphp
+                                    </div>
+                                @endif
+                            @endforeach
                         </div>
 
                         <div class="col-lg-3">
-                            <div class="card card-custom card-sale">
-                                @php
-                                    function getProgressBarColor($percentage)
-                                    {
-                                        if ($percentage < 40) {
-                                            return 'bg-success'; // kelas warna merah untuk presentase di bawah 30%
-                                        } elseif ($percentage < 70) {
-                                            return 'bg-warning'; // kelas warna kuning untuk presentase di antara 30% dan 70%
-                                        } else {
-                                            return 'bg-danger'; // kelas warna hijau untuk presentase di atas 70%
-                                        }
-                                    }
-                                @endphp
-                                <div class="difficulty mt-2">
-                                    Difficult Project
+                            <div class="row">
+                                <div class="col-3 col-lg-12 mt-2 mt-lg-0">
+                                    @foreach ($project->project_images as $image)
+                                        <img src="{{ asset('storage/' . $image->image) }}" alt=""
+                                            class="img-fluid rounded-5 py-1 px-1 w-100"
+                                            onclick="changeMainImage('{{ asset('storage/' . $image->image) }}')"
+                                            @if ($firstImage) id="main-image"
+                                                        @php
+                                                        $firstImage = false;
+                                                         @endphp @endif>
+                                    @endforeach
                                 </div>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped {{ getProgressBarColor($project->difficult) }}"
-                                        role="progressbar" style="width: {{ $project->difficult }}%"
-                                        aria-valuenow="{{ $project->difficult }}" aria-valuemin="0"
-                                        aria-valuemax="100"></div>
-                                </div>
-                                <div class="row">
-                                    @php
-                                        $tools = explode(',', $project->tools);
-                                    @endphp
-                                    <div class="col">
-                                        <div class="icon-tools mt-4">
-
-                                            @foreach ($tools as $item)
-                                                @if (strcasecmp($item, 'LARAVEL') === 0)
-                                                    <span> <img src="{{ asset('icon/laravel-icon.svg') }}"
-                                                            alt="" class="mb-3"></span>
-                                                @elseif (strcasecmp($item, 'LARAGON') === 0)
-                                                    <span> <img src="{{ asset('icon/laragon.svg') }}" alt=""
-                                                            class="mb-3"></span>
-                                                @elseif (strcasecmp($item, 'CSS') === 0)
-                                                    <span> <img src="{{ asset('icon/css-icon.svg') }}" alt=""
-                                                            class="mb-3"></span>
-                                                @elseif (strcasecmp($item, 'XAMPP') === 0)
-                                                    <span> <img src="{{ asset('icon/xampp.svg') }}" alt=""
-                                                            class="mb-3"></span>
-                                                @elseif (strcasecmp($item, 'MYSQL') === 0 || strcasecmp($item, 'MYSQLI') === 0)
-                                                    <span> <img src="{{ asset('icon/mysql-3.svg') }}" alt=""
-                                                            class="mb-3"></span>
-                                                @elseif (strcasecmp($item, 'PHP') === 0)
-                                                    <span> <img
-                                                            src="{{ asset('icon/php-programming-language-icon.svg') }}"
-                                                            alt="" class="mb-3"></span>
-                                                @elseif (strcasecmp($item, 'BOOTSRAP') === 0)
-                                                    <span> <img src="{{ asset('icon/bootstrap-4-icon.svg') }}"
-                                                            alt="" class="mb-3"></span>
-                                                @elseif (strcasecmp($item, 'CODEIGNITER') === 0)
-                                                    <span> <img src="{{ asset('icon/codeigniter-icon.svg') }}"
-                                                            alt="" class="mb-3"></span>
-                                                @elseif (strcasecmp($item, 'HTML') === 0)
-                                                    <span> <img src="{{ asset('icon/html-icon.svg') }}"
-                                                            alt="" class="mb-3"></span>
-                                                @elseif (strcasecmp($item, 'JQUERY') === 0)
-                                                    <span> <img src="{{ asset('icon/jquery.svg') }}" alt=""
-                                                            class="mb-3"></span>
-                                                @elseif (strcasecmp($item, 'KOTLIN') === 0)
-                                                    <span> <img src="{{ asset('icon/kotlin-1.svg') }}" alt=""
-                                                            class="mb-3"></span>
-                                                @elseif (strcasecmp($item, 'JAVASCRIPT') === 0)
-                                                    <span> <img src="{{ asset('icon/logo-javascript.svg') }}"
-                                                            alt="" class="mb-3"></span>
-                                                @elseif (strcasecmp($item, 'PYTHON') === 0)
-                                                    <span> <img src="{{ asset('icon/python-4.svg') }}" alt=""
-                                                            class="mb-3"></span>
-                                                @elseif (strcasecmp($item, 'VUE') === 0)
-                                                    <span> <img src="{{ asset('icon/vue-js-icon.svg') }}"
-                                                            alt="" class="mb-3"></span>
-                                                @elseif (strcasecmp($item, 'Figma') === 0)
-                                                    <span> <img src="{{ asset('icon/figma.svg') }}" alt=""
-                                                            class="mb-3"></span>
-                                                @else
-                                                @endif
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-                                {{-- <div class="sale"></div>
-                                <div class="d-flex justify-content-between align-items-center my-4">
-                                    <div class="text-danger fw-semibold fs-5">Special Offer</div>
-                                    <div class="">⭐4.8 / 120 Reviewers</div>
-                                </div> --}}
-                                {{-- <div class="text-muted fw-semibold mb-3">Start From</div>
-                                <div class="d-inline-block mb-5">
-                                    <span class="fw-semibold fs-4">Rp.</span>
-                                    @php
-                                        $price = number_format($project->price, 0, ',', '.');
-                                        $parts = explode(',', $price);
-                                        $thousands = $parts[0];
-                                        $lastThreeDigits = isset($parts[1]) ? substr($parts[1], 0, 3) : '';
-                                    @endphp
-                                    <span class="fw-semibold fs-2">{{ $thousands }}.</span>
-                                    <span class="fw-semibold fs-4">{{ $lastThreeDigits }}</span>
-                                </div> --}}
-
-
-                                {{-- <button class="btn btn-order">Order Now</button> --}}
-                                <a class="btn btn-order demo mb-3" target="_blank" href="{{ $project->demo_link }}">
-                                    Demo</a>
                             </div>
                         </div>
                     </div>
@@ -231,65 +157,6 @@
                 <div class="header-tools">
                     <h3 class="h4 fw-semibold">Description</h3>
                 </div>
-                {{-- <div class="row">
-                    @php
-                        $tools = explode(',', $project->tools);
-                    @endphp
-                    <div class="col-4">
-                        <div class="icon-tools mt-4">
-
-                            @foreach ($tools as $item)
-                                @if (strcasecmp($item, 'LARAVEL') === 0)
-                                    <span> <img src="{{ asset('icon/laravel-icon.svg') }}" alt=""
-                                            class="mb-3"></span>
-                                @elseif (strcasecmp($item, 'LARAGON') === 0)
-                                    <span> <img src="{{ asset('icon/laragon.svg') }}" alt=""
-                                            class="mb-3"></span>
-                                @elseif (strcasecmp($item, 'CSS') === 0)
-                                    <span> <img src="{{ asset('icon/css-icon.svg') }}" alt=""
-                                            class="mb-3"></span>
-                                @elseif (strcasecmp($item, 'XAMPP') === 0)
-                                    <span> <img src="{{ asset('icon/xampp.svg') }}" alt=""
-                                            class="mb-3"></span>
-                                @elseif (strcasecmp($item, 'MYSQL') === 0 || strcasecmp($item, 'MYSQLI') === 0)
-                                    <span> <img src="{{ asset('icon/mysql-3.svg') }}" alt=""
-                                            class="mb-3"></span>
-                                @elseif (strcasecmp($item, 'PHP') === 0)
-                                    <span> <img src="{{ asset('icon/php-programming-language-icon.svg') }}"
-                                            alt="" class="mb-3"></span>
-                                @elseif (strcasecmp($item, 'BOOTSRAP') === 0)
-                                    <span> <img src="{{ asset('icon/bootstrap-4-icon.svg') }}" alt=""
-                                            class="mb-3"></span>
-                                @elseif (strcasecmp($item, 'CODEIGNITER') === 0)
-                                    <span> <img src="{{ asset('icon/codeigniter-icon.svg') }}" alt=""
-                                            class="mb-3"></span>
-                                @elseif (strcasecmp($item, 'HTML') === 0)
-                                    <span> <img src="{{ asset('icon/html-icon.svg') }}" alt=""
-                                            class="mb-3"></span>
-                                @elseif (strcasecmp($item, 'JQUERY') === 0)
-                                    <span> <img src="{{ asset('icon/jquery.svg') }}" alt=""
-                                            class="mb-3"></span>
-                                @elseif (strcasecmp($item, 'KOTLIN') === 0)
-                                    <span> <img src="{{ asset('icon/kotlin-1.svg') }}" alt=""
-                                            class="mb-3"></span>
-                                @elseif (strcasecmp($item, 'JAVASCRIPT') === 0)
-                                    <span> <img src="{{ asset('icon/logo-javascript.svg') }}" alt=""
-                                            class="mb-3"></span>
-                                @elseif (strcasecmp($item, 'PYTHON') === 0)
-                                    <span> <img src="{{ asset('icon/python-4.svg') }}" alt=""
-                                            class="mb-3"></span>
-                                @elseif (strcasecmp($item, 'VUE') === 0)
-                                    <span> <img src="{{ asset('icon/vue-js-icon.svg') }}" alt=""
-                                            class="mb-3"></span>
-                                @else
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-                </div> --}}
-
-
-
             </div>
 
             <div class="container mt-2 article mb-5">
@@ -297,7 +164,7 @@
                     <div class="col-8">
                         <hr>
                     </div>
-                    <div class="col-8 mt-2">
+                    <div class="col-md-12 col-sm-12 col-lg-8 mt-2 mt-2">
                         <p>
                             {!! $project->body !!}
                         </p>

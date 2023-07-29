@@ -11837,7 +11837,8 @@ body {
   border: none;
   border-radius: 20px;
   background-color: #ffffff;
-  position: relative; /* tambahkan ini untuk memposisikan elemen child secara absolut */
+  position: relative;
+  /* tambahkan ini untuk memposisikan elemen child secara absolut */
 }
 .section-artikel .card-custom-article .category {
   position: absolute;

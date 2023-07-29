@@ -36,7 +36,7 @@ class FrontendController extends Controller
     }
     public function detailArticle($slug)
     {
-        $all_article = Article::all();
+        $all_article = Article::latest()->take(6)->get();
         $article = Article::where('slug', $slug)->first();
 
         if (!$article) {

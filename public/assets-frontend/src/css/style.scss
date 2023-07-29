@@ -194,12 +194,14 @@ body {
             font-size: 24px;
         }
     }
+
     .card-custom-article {
         padding: 20px 20px;
         border: none;
         border-radius: 20px;
         background-color: #ffffff;
-        position: relative; /* tambahkan ini untuk memposisikan elemen child secara absolut */
+        position: relative;
+        /* tambahkan ini untuk memposisikan elemen child secara absolut */
     }
 
     .card-custom-article .category {
@@ -275,6 +277,7 @@ body {
             &:nth-child(1) {
                 margin-left: 0 !important;
             }
+
             img {
                 width: 20px;
             }
@@ -346,6 +349,7 @@ body {
 .section-footer {
     background-color: #1d3557;
     text-align: center;
+
     p {
         color: #f7f7f7;
     }

@@ -17,7 +17,7 @@
 
     <!-- bootstrap -->
     <link rel="stylesheet" href="{{ asset('assets-frontend/vendor/bootstrap-5/css/bootstrap.css') }}">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1132597597785133"
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9332769907105662"
         crossorigin="anonymous"></script>
 
     <!-- jquery -->
@@ -77,8 +77,8 @@
                         </div>
                         <div class="d-flex justify-content-center justify-content-lg-start" data-aos="fade-right"
                             data-aos-duration="2000">
-                            <a class="btn btn-skiddie py-2 px-4 my-3" href="mailto:{{ $abouts->contact }}">Contact
-                                Me</a>
+                            <a class="btn btn-skiddie py-2 px-4 my-3" href="#contact-us">Contact
+                                Us</a>
                         </div>
                     </div>
                     <div class="col-lg-6 mt-3 mt-lg-1 order-1 order-lg-2">
@@ -302,8 +302,8 @@
                 </div>
             </div>
         </section>
-
-        {{-- <section class="section-contact">
+        <hr class="my-4">
+        <section class="section-contact" id="contact-us">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
@@ -336,7 +336,7 @@
                     </div>
                 </div>
             </div>
-        </section> --}}
+        </section>
 
 
     </main>

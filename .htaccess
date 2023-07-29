@@ -1,0 +1,7 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Redirect semua permintaan ke direktori public
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

@@ -36,7 +36,6 @@
                                 </h4>
                                 <p>
                                 <div id="app">
-<<<<<<< Updated upstream
                                     <template v-if="!showFullArticle">
                                         <p v-html="truncatedText"></p>
                                         <button class="btn btn-secondary" @click="showFullArticle = true"
@@ -44,27 +43,9 @@
                                     </template>
                                     <div v-else>{!! $article->body !!}</div>
                                 </div>
-
-
-
-
-
-
-
-
-
-=======
-                                    <p v-if="!showFullArticle">{{ substr($article->body, 0, 200) }}...</p>
-                                    <p v-else>{{ $article->body }}</p>
-                                    <button class="btn btn-secondary" @click="showFullArticle = true"
-                                        v-if="!showFullArticle">Read More</button>
-                                </div>
->>>>>>> Stashed changes
                                 </p>
                                 <div>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -77,16 +58,11 @@
                                         <li>
                                             <h4>
                                                 <a href="/dashboard/article/{{ $recent->slug }}">
-<<<<<<< Updated upstream
                                                     {{ substr($recent->title, 0, 25) }}... </a>
-=======
-                                                    {{ substr($article->title, 0, 25) }}... </a>
->>>>>>> Stashed changes
                                             </h4>
                                             <span>{{ $recent->category }}</span>
                                         </li>
                                     @endforeach
-
                                 </ul>
                             </div>
                         </div>

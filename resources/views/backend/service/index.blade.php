@@ -43,7 +43,7 @@
                             <tr>
                                 <td>{{ substr($service->title, 0, 50) }}...</td>
                                 <td>
-                                    <img style="width: 150px" src="{{ asset('storage/' . $service->thumbnail) }}"
+                                    <img style="width: 50px" src="{{ asset('storage/' . $service->thumbnail) }}"
                                         class="img-thumbnail" alt="...">
                                 </td>
                                 <td>
