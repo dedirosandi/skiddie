@@ -25,56 +25,7 @@
                                     </p>
                                 </a>
                             </li>
-                            <li>
-                                <a href="#">
-                                    <img src="{{ asset('assets-backend/vendors/images/photo1.jpg') }}" alt="" />
-                                    <h3>Lea R. Frith</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                                        elit, sed...
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="{{ asset('assets-backend/vendors/images/photo2.jpg') }}" alt="" />
-                                    <h3>Erik L. Richards</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                                        elit, sed...
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="{{ asset('assets-backend/vendors/images/photo3.jpg') }}" alt="" />
-                                    <h3>John Doe</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                                        elit, sed...
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="{{ asset('assets-backend/vendors/images/photo4.jpg') }}" alt="" />
-                                    <h3>Renee I. Hansen</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                                        elit, sed...
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="{{ asset('assets-backend/vendors/images/img.jpg') }}" alt="" />
-                                    <h3>Vicki M. Coleman</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                                        elit, sed...
-                                    </p>
-                                </a>
-                            </li>
+
                         </ul>
                     </div>
                 </div>
@@ -91,9 +42,8 @@
                     </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                    <a class="dropdown-item" href="/dashboard/team/{{ auth()->user()->id }}/edit"
-								><i class="dw dw-settings2"></i> Setting</a
-							>
+                    <a class="dropdown-item" href="/dashboard/team/{{ auth()->user()->id }}/edit"><i
+                            class="dw dw-settings2"></i> Setting</a>
                     <form action="/logout" method="POST">
                         @csrf
                         <button type="submit" class="dropdown-item"> <i class="dw dw-logout"></i> Log Out</button>

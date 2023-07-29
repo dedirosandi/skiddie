@@ -308,28 +308,43 @@
                 <div class="row">
                     <div class="col-md-6">
                         <h2>Contact Us</h2>
-                        <p>Get in touch with us for any inquiries or feedback.</p>
-                        <form>
+                        <p>Contact us for cooperation.</p>
+                        @if (Session::has('success'))
+                            <div class="alert alert-success" role="alert">
+                                {{ Session::get('success') }}
+                            </div>
+                        @endif
+                        <form action="/contact/send" method="post">
+                            @csrf
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" id="name" class="form-control" placeholder="Your Name"
-                                    required>
+                                <input type="text" id="name" name="name" class="form-control"
+                                    placeholder="Your Name" required>
                             </div>
                             <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" class="form-control" placeholder="Your Email"
-                                    required>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label for="email">Email</label>
+                                        <input type="email" name="email" id="email" class="form-control"
+                                            placeholder="Your Email" required>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="whatsapp">Whatsapp</label>
+                                        <input type="number" name="whatsapp" id="whatsapp" class="form-control"
+                                            placeholder="Your Whatsapp" required>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="message">Message</label>
-                                <textarea id="message" class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                                <textarea id="message" name="message" class="form-control" rows="5" placeholder="Your Message" required></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Send Message</button>
                         </form>
                     </div>
                     <div class="col-md-6">
                         <h2>Our Location</h2>
-                        <p>123 Street, City, Country</p>
+                        <p>Tangerang Selatan, Indonesia</p>
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63447.48875029023!2d106.69789218959866!3d-6.3333591668200295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ef9a6f1af8f5%3A0xb6ca921381564bdc!2sPamulang%2C%20South%20Tangerang%20City%2C%20Banten!5e0!3m2!1sen!2sid!4v1686948471213!5m2!1sen!2sid"
                             width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>

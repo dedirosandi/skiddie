@@ -45,6 +45,12 @@
                         <span class="micon bi bi-folder-fill"></span><span class="mtext">File Manager</span>
                     </a>
                 </li>
+                <li>
+                    <a href="/dashboard/message"
+                        class="dropdown-toggle no-arrow {{ Request::is('dashboard/message*') ? 'active' : '' }}">
+                        <span class="micon bi bi-inbox-fill"></span><span class="mtext">Message</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

@@ -8,8 +8,10 @@ use App\Http\Controllers\backend\TeamController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\backend\AboutController;
 use App\Http\Controllers\backend\ArticleController;
+use App\Http\Controllers\backend\MessageController;
 use App\Http\Controllers\backend\ProjectController;
 use App\Http\Controllers\backend\ServiceController;
+use App\Http\Controllers\frontend\ContactController;
 use App\Http\Controllers\frontend\FrontendController;
 use App\Http\Controllers\backend\FileManagerController;
 use App\Http\Controllers\dashboard\DashboardController;
@@ -33,6 +35,7 @@ use App\Http\Controllers\dashboard\DashboardController;
 Route::get('/', [FrontendController::class, 'Frontend'])->name('frontend');
 Route::get('/detail-project/{slug}', [FrontendController::class, 'detailProject'])->name('forntend.detail-project');
 Route::get('/detail-article/{slug}', [FrontendController::class, 'detailArticle'])->name('forntend.detail-article');
+Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
 
 // Auth
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
@@ -46,11 +49,14 @@ Route::get('/dashboard', [MainController::class, 'index'])->middleware('auth');
 Route::get('/dashboard/project/checkSlug', [ProjectController::class, 'checkSlug'])->middleware('auth');
 Route::get('/dashboard/article/checkSlug', [ArticleController::class, 'checkSlug'])->middleware('auth');
 
+// Route::resource('/dashboard/message', BackendContactController::class)->middleware('auth');
+// Route::get('', [BackendContactController::class, 'index'])->middleware('auth');
 Route::resource('/dashboard/about', AboutController::class)->middleware('auth');
 Route::resource('/dashboard/team', TeamController::class)->middleware('auth');
 Route::resource('/dashboard/project', ProjectController::class)->middleware('auth');
 Route::resource('/dashboard/article', ArticleController::class)->middleware('auth');
 Route::resource('/dashboard/filemanager', FileManagerController::class)->middleware('auth');
 Route::resource('/dashboard/service', ServiceController::class)->middleware('auth');
+Route::resource('/dashboard/message', MessageController::class)->middleware('auth');
 Route::get('/dashboard/filemanager/{fileManager}/download', [FileManagerController::class, 'download'])
     ->name('filemanager.download')->middleware('auth');
