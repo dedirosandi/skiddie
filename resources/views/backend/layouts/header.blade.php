@@ -14,19 +14,29 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <div class="notification-list mx-h-350 customscroll">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    <img src="{{ asset('assets-backend/vendors/images/img.jpg') }}" alt="" />
-                                    <h3>John Doe</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                                        elit, sed...
-                                    </p>
-                                </a>
-                            </li>
-
-                        </ul>
+                        @php
+                            $unreadMessage = \App\Models\backend\Message::where('status', 'unread')
+                                ->latest('created_at')
+                                ->get();
+                        @endphp
+                        @if ($unreadMessage->isEmpty())
+                            <b>Tidak ada pesan yang belum dibaca.</b>
+                        @else
+                            <ul class="notifications-list">
+                                @foreach ($unreadMessage as $message)
+                                    <li>
+                                        <a href="/dashboard/message/{{ $message->id }}">
+                                            <img src="{{ asset('assets-backend/vendors/images/img.jpg') }}"
+                                                alt="" />
+                                            <h3> {{ $message->name }} </h3>
+                                            <p>
+                                                {{ $message->message }}
+                                            </p>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
                     </div>
                 </div>
             </div>
