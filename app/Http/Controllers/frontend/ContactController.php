@@ -44,41 +44,6 @@ class ContactController extends Controller
         // Jika terjadi kesalahan saat menyimpan data, tangani kesalahan di sini
         Session::flash('error', 'Your message has been sent Failed!');
     }
-
-    // Mengirim email
-    try {
-        // Konfigurasi transport untuk mengirim email via SMTP
-        $transport = new Swift_SmtpTransport('mail.skiddie.id', 465); // Ganti dengan alamat SMTP dan port yang sesuai
-        $transport->setUsername('business@skiddie.id'); // Ganti dengan username SMTP Anda
-        $transport->setPassword('Indonesia12345'); // Ganti dengan password SMTP Anda
-        // Jika Anda ingin menggunakan SSL atau TLS, sesuaikan konfigurasi transport sesuai kebutuhan.
-
-        // Membuat instance dari SwiftMailer
-        $mailer = new Swift_Mailer($transport);
-
-        // Membuat instance dari Swift_Message
-        $message = new Swift_Message('New Contact Form Submission');
-        $message->setFrom(['noreply@yourdomain.com' => 'Your Website Name']);
-        $message->setTo(['business@skiddie.id']);
-        $message->setBody('Name: '.$name."\n".
-                         'Email: '.$email."\n".
-                         'WhatsApp: '.$whatsapp."\n".
-                         'Message: '.$message);
-
-        // Mengirim email
-        $result = $mailer->send($message);
-
-        // Set flash message berdasarkan hasil pengiriman email
-        if ($result > 0) {
-            Session::flash('success', 'Your message has been sent successfully!');
-        } else {
-            Session::flash('error', 'Failed to send your message!');
-        }
-    } catch (\Exception $e) {
-        // Jika terjadi kesalahan saat mengirim email, tangani kesalahan di sini
-        Session::flash('error', 'Failed to send your message!');
-    }
-
     // Redirect ke halaman konfirmasi atau halaman lain sesuai kebutuhan
     return redirect('/#contact-us');
 }
