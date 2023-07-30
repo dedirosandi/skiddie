@@ -24,7 +24,7 @@
                                     @if ($message->status === 'unread')
                                         <b class="badge bg-primary text-white">{{ $message->name }}</b>
                                     @else
-                                        {{ $message->name }}
+                                        <i class="icon-copy bi bi-check2-all"></i> {{ $message->name }}
                                     @endif
                                 </td>
                                 <td>{{ $message->email }}</td>
