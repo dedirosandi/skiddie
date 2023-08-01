@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\frontend;
 
 use Illuminate\Http\Request;
+use ReCaptcha\ReCaptcha;
 use App\Models\frontend\Contact;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -22,7 +23,17 @@ class ContactController extends Controller
         'email' => 'required|email|max:255',
         'whatsapp' => 'required|string|max:15', // Ubah sesuai dengan aturan nomor WhatsApp
         'message' => 'required|string',
+        'g-recaptcha-response' => 'required', // Menambahkan validasi reCAPTCHA
     ]);
+
+    // Verifikasi reCAPTCHA
+    $recaptcha = new ReCaptcha('YOUR_SECRET_KEY');
+    $response = $recaptcha->verify($request->input('g-recaptcha-response'), $request->ip());
+
+    if (!$response->isSuccess()) {
+        // Jika reCAPTCHA tidak valid, kembalikan ke halaman form dengan pesan error
+        return redirect()->back()->with('error', 'Please verify that you are not a robot.');
+    }
 
     // Proses data yang dikirim dari form
     $name = $request->input('name');

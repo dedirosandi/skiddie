@@ -14,6 +14,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 
     <!-- bootstrap -->
     <link rel="stylesheet" href="{{ asset('assets-frontend/vendor/bootstrap-5/css/bootstrap.css') }}">
@@ -339,6 +341,11 @@
                                 <label for="message">Message</label>
                                 <textarea id="message" name="message" class="form-control" rows="5" placeholder="Your Message" required></textarea>
                             </div>
+                            <div class="form-group">
+                                <div class="g-recaptcha" data-sitekey="6LdUAXEnAAAAAGEY2LkCyNK58r8kDOMLqK4ebkaN">
+                                </div>
+                            </div>
+
                             <button type="submit" class="btn btn-primary">Send Message</button>
                         </form>
                     </div>
