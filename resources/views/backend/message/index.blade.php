@@ -36,10 +36,15 @@
                                 @endphp
                                 <td><a target="_blank" href="{{ $whatsappURL }}">{{ $message->whatsapp }}</a></td>
                                 <td>
-                                    <form action="/dashboard/article/{{ $message->id }}" method="post">
+
+                                    <form action="/dashboard/message/{{ $message->id }}" method="post">
                                         @method('delete')
                                         @csrf
-                                        <button class="btn btn-sm btn-danger"><i class="icon-copy dw dw-trash"></i></button>
+                                        @if ($message->status === 'unread')
+                                        @else
+                                            <button class="btn btn-sm btn-danger"><i
+                                                    class="icon-copy dw dw-trash"></i></button>
+                                        @endif
                                     </form>
                                 </td>
                             </tr>
