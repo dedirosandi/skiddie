@@ -27,7 +27,7 @@ class ContactController extends Controller
     ]);
 
     // Verifikasi reCAPTCHA
-    $recaptcha = new ReCaptcha('6LdUAXEnAAAAAGEY2LkCyNK58r8kDOMLqK4ebkaN');
+    $recaptcha = new ReCaptcha('6LdUAXEnAAAAAI0oDxcWFrn-KuFvVgXMPOOnt34D');
     $response = $recaptcha->verify($request->input('g-recaptcha-response'), $request->ip());
 
     if (!$response->isSuccess()) {
