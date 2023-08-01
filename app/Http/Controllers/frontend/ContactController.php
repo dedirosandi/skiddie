@@ -23,7 +23,7 @@ class ContactController extends Controller
         'email' => 'required|email|max:255',
         'whatsapp' => 'required|string|max:15', // Ubah sesuai dengan aturan nomor WhatsApp
         'message' => 'required|string',
-        'g-recaptcha-response' => 'required', // Menambahkan validasi reCAPTCHA
+        'g-recaptcha-response' => 'nullable', // Menambahkan validasi reCAPTCHA
     ]);
 
     // Verifikasi reCAPTCHA
