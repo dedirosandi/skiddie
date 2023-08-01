@@ -57,7 +57,8 @@ class TeamController extends Controller
         $validasiDataRegister['profile_picture'] = $request->file('profile_picture')->store('image/image-profile-picture');
         User::create($validasiDataRegister);
 
-        return redirect('/dashboard/team');
+        return redirect('/dashboard/team')->with('success', 'Created successfully');
+        // return redirect()->back()->with('success', 'Created successfully');
     }
 
     /**
@@ -95,18 +96,18 @@ class TeamController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
-            'name' => 'required',
-            'username' => 'required',
-            'email' => 'required|email',
-            'linkedin' => 'required|url',
-            'as' => 'required',
-            'description' => 'required',
-            'profile_picture' => 'image',
+            'name' => 'nullable',
+            'username' => 'nullable',
+            'email' => 'nullable|email',
+            'linkedin' => 'nullable|url',
+            'as' => 'nullable',
+            'description' => 'nullable',
+            'profile_picture' => 'nullable|image',
         ];
 
         // Tambahkan validasi untuk password jika ada perubahan
         if ($request->filled('password')) {
-            $rules['password'] = 'required|min:8';
+            $rules['password'] = 'nullable|min:8';
         }
 
         $validatedData = $request->validate($rules);
@@ -129,7 +130,8 @@ class TeamController extends Controller
         // Update data pengguna
         $user->update($validatedData);
 
-        return redirect('/dashboard/team');
+        return redirect('/dashboard/team')->with('success', 'Updated successfully');
+        // return redirect()->back()->with('success', 'Updated successfully');
     }
 
     /**
@@ -145,6 +147,7 @@ class TeamController extends Controller
             Storage::delete($user->profile_picture);
         }
         $user->delete();
-        return redirect('/dashboard/team');
+        // return redirect('/dashboard/team');
+        return redirect()->back()->with('success', 'Deleted successfully');
     }
 }

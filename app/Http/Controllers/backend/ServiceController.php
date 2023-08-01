@@ -48,7 +48,8 @@ class ServiceController extends Controller
 
         $validateData['thumbnail'] = $request->file('thumbnail')->store('image/thumbnail-service');
         Service::create($validateData);
-        return redirect('/dashboard/service');
+        return redirect('/dashboard/service')->with('success', 'Created successfully');
+        // return redirect()->back()->with('success', 'Created successfully');
     }
 
     /**
@@ -100,7 +101,8 @@ class ServiceController extends Controller
         }
 
         Service::where('id', $service->id)->update($validateData);
-        return redirect('/dashboard/service');
+        return redirect('/dashboard/service')->with('success', 'Updated successfully');
+        // return redirect()->back()->with('success', 'Updated successfully');
     }
 
     /**
@@ -123,6 +125,7 @@ class ServiceController extends Controller
         $service->delete();
 
         // Redirect to the service dashboard with a success message
-        return redirect('/dashboard/service');
+        // return redirect('/dashboard/service');
+        return redirect()->back()->with('success', 'Deleted successfully');
     }
 }

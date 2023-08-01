@@ -82,7 +82,7 @@ class FileManagerController extends Controller
 
         // Redirect dengan pesan sukses
 
-        return redirect('/dashboard/filemanager');
+        return redirect('/dashboard/filemanager')->with('success', 'Created successfully');
     }
 
     /**
@@ -127,7 +127,8 @@ class FileManagerController extends Controller
         $fileManager = FileManager::find($id);
 
         if (!$fileManager) {
-            return redirect('/dashboard/filemanager')->with('error', 'Data tidak ditemukan.');
+            // return redirect('/dashboard/filemanager')->with('error', 'Data tidak ditemukan.');
+            return redirect()->back()->with('error', 'File not found');
         }
 
         // Cek apakah ada file baru yang diunggah
@@ -158,7 +159,9 @@ class FileManagerController extends Controller
         $fileManager->save();
 
         // Redirect dengan pesan sukses
-        return redirect('/dashboard/filemanager')->with('success', 'Data berhasil diperbarui.');
+        return redirect('/dashboard/filemanager')->with('success', 'Updated successfully');
+        // return redirect()->back()->with('success', 'Updated successfully');
+        
     }
 
 
@@ -177,7 +180,8 @@ class FileManagerController extends Controller
 
         if (!$fileManager) {
             // Jika FileManager tidak ditemukan, redirect dengan pesan error
-            return redirect('/dashboard/filemanager')->with('error', 'Data tidak ditemukan.');
+            // return redirect('/dashboard/filemanager')->with('error', 'Data tidak ditemukan.');
+            return redirect()->back()->with('error', 'File not found');
         }
 
         // Hapus file terkait
@@ -187,7 +191,8 @@ class FileManagerController extends Controller
         $fileManager->delete();
 
         // Redirect dengan pesan sukses
-        return redirect('/dashboard/filemanager')->with('success', 'Data berhasil dihapus.');
+        // return redirect('/dashboard/filemanager')->with('success', 'Data berhasil dihapus.');
+        return redirect()->back()->with('success', 'Deleted successfully');
     }
 
 

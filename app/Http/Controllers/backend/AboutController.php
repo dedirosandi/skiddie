@@ -49,7 +49,8 @@ class AboutController extends Controller
 
         $validateData['thumbnail'] = $request->file('thumbnail')->store('image/thumbnail-about');
         About::create($validateData);
-        return redirect('/dashboard/about');
+        return redirect('/dashboard/about')->with('success', 'Created successfully');
+        //  return redirect()->back()->with('success', 'Created successfully');
     }
 
     /**
@@ -103,7 +104,8 @@ class AboutController extends Controller
             # code...
         }
         About::first()->update($validateData);
-        return redirect('/dashboard/about');
+        return redirect('/dashboard/about')->with('success', 'Updated successfully');
+        //  return redirect()->back()->with('success', 'Updated successfully');
     }
 
     /**

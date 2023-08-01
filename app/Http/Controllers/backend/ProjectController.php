@@ -71,7 +71,8 @@ class ProjectController extends Controller
         }
     }
 
-    return redirect('/dashboard/project');
+    return redirect('/dashboard/project')->with('success', 'Created successfully');
+    // return redirect()->back()->with('success', 'Created successfully');
 }
 
 
@@ -174,7 +175,8 @@ class ProjectController extends Controller
         }
     }
 
-    return redirect('/dashboard/project');
+    return redirect('/dashboard/project')->with('success', 'Updated successfully');
+    // return redirect()->back()->with('success', 'Updated successfully');
 }
 
 
@@ -199,7 +201,8 @@ class ProjectController extends Controller
     // Hapus project
     $project->delete();
 
-    return redirect('/dashboard/project')->with('success', 'Project deleted successfully.');
+    // return redirect('/dashboard/project')->with('success', 'Project deleted successfully.');
+    return redirect()->back()->with('success', 'Deleted successfully');
 }
 
     public function checkSlug(Request $request)

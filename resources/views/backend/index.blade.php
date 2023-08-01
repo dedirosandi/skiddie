@@ -79,6 +79,19 @@
     <div class="mobile-menu-overlay"></div>
 
     <div class="main-container">
+        <!-- Tampilkan pesan sukses jika ada -->
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <!-- Tampilkan pesan error jika ada -->
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
         <div class="xs-pd-20-10 pd-ltr-20">
             @yield('container')
         </div>

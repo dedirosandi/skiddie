@@ -59,7 +59,8 @@ class ArticleController extends Controller
         Article::create($validatedData);
 
         // Redirect ke halaman yang diinginkan
-        return redirect('/dashboard/article');
+        return redirect('/dashboard/article')->with('success', 'Created successfully');
+        //  return redirect()->back()->with('success', 'Created successfully');
     }
 
     /**
@@ -128,7 +129,8 @@ class ArticleController extends Controller
     $article->updated_at = $currentDateTime;
     $article->save();
 
-    return redirect('/dashboard/article');
+    return redirect('/dashboard/article')->with('success', 'Updated successfully');
+    //  return redirect()->back()->with('success', 'Updated successfully');
 }
 
 
@@ -148,7 +150,8 @@ class ArticleController extends Controller
 
     $article->delete();
 
-    return redirect('/dashboard/article');
+    // return redirect('/dashboard/article');
+     return redirect()->back()->with('success', 'Deleted successfully');
 }
 
 

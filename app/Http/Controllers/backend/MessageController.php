@@ -91,6 +91,7 @@ class MessageController extends Controller
     {
         //
         $message->delete();
-        return redirect('/dashboard/message');
+        // return redirect('/dashboard/message');
+        return redirect()->back()->with('success', 'Deleted successfully');
     }
 }
