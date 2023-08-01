@@ -22,16 +22,25 @@
                             <tr>
                                 <td>
                                     @if ($message->status === 'unread')
-                                        <b class="badge bg-primary text-white">{{ $message->name }}</b>
+                                        <a href="/dashboard/message/{{ $message->id }}"
+                                            class="text-danger">{{ $message->name }}</a>
                                     @else
-                                        <i class="icon-copy bi bi-check2-all"></i> {{ $message->name }}
+                                        <a href="/dashboard/message/{{ $message->id }}"
+                                            class="text-success">{{ $message->name }}</a>
                                     @endif
                                 </td>
                                 <td>{{ $message->email }}</td>
-                                <td>{{ $message->whatsapp }}</td>
+                                @php
+                                    $internationalPhoneNumber = '62' . preg_replace('/\D/', '', $message->whatsapp);
+                                    $whatsappURL = 'https://wa.me/' . $internationalPhoneNumber;
+                                @endphp
+                                <td><a target="_blank" href="{{ $whatsappURL }}">{{ $message->whatsapp }}</a></td>
                                 <td>
-                                    <a class="btn btn-success" href="/dashboard/message/{{ $message->id }}"><i
-                                            class="icon-copy dw dw-eye"></i></a>
+                                    <form action="/dashboard/article/{{ $message->id }}" method="post">
+                                        @method('delete')
+                                        @csrf
+                                        <button class="btn btn-sm btn-danger"><i class="icon-copy dw dw-trash"></i></button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

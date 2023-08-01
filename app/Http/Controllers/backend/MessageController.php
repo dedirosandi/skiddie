@@ -16,8 +16,9 @@ class MessageController extends Controller
     public function index()
     {
         //
-        $messages = Message::latest('created_at')->get();
-        return view('backend.message.index', compact('messages'));
+        // $messages = Message::latest('updated_at')->get();
+        // return view('backend.message.index', compact('messages'));
+        return view('backend.message.index', ['messages' => Message::orderBy('created_at', 'desc')->get()]);
     }
 
     /**
