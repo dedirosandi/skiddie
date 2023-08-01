@@ -41,10 +41,10 @@
                     <input class="form-control" name="email" placeholder="Email" value="{{ old('email', $teams->email) }}"
                         type="email" />
                 </div>
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label>Password</label>
                     <input class="form-control" type="password" name="password" autocomplete="off" />
-                </div>
+                </div> --}}
                 <div class="form-group">
                     <label>Description</label>
                     <textarea class="form-control" name="description">{{ old('description', $teams->description) }}</textarea>
