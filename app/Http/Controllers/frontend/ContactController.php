@@ -32,7 +32,9 @@ class ContactController extends Controller
 
     if (!$response->isSuccess()) {
         // Jika reCAPTCHA tidak valid, kembalikan ke halaman form dengan pesan error
-        return redirect()->back()->with('error', 'Please verify that you are not a robot.');
+        // return redirect()->back()->with('error', 'Please verify that you are not a robot.');
+        Session::flash('error', 'Please verify that you are not a robot.');
+        return redirect('/#contact-us');
         // return redirect('/#contact-us')->with('error', 'Please verify that you are not a robot.');
     }
 
@@ -52,9 +54,11 @@ class ContactController extends Controller
         $contact->save();
 
         Session::flash('success', 'Your message has been sent successfully!');
+        return redirect('/#contact-us');
     } catch (QueryException $e) {
         // Jika terjadi kesalahan saat menyimpan data, tangani kesalahan di sini
         Session::flash('error', 'Your message has been sent Failed!');
+        return redirect('/#contact-us');
     }
     // Redirect ke halaman konfirmasi atau halaman lain sesuai kebutuhan
     return redirect('/#contact-us');
