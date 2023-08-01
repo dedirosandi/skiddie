@@ -311,11 +311,16 @@
                     <div class="col-md-6">
                         <h2>Contact Us</h2>
                         <p>Contact us for cooperation.</p>
-                        @if (Session::has('success'))
+                        @if (Session::has('error'))
+                            <div class="alert alert-danger" role="alert">
+                                {{ Session::get('error') }}
+                            </div>
+                        @elseif (Session::has('success'))
                             <div class="alert alert-success" role="alert">
                                 {{ Session::get('success') }}
                             </div>
                         @endif
+
                         <form action="/contact/send" method="post">
                             @csrf
                             <div class="form-group">
