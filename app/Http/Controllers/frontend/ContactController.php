@@ -34,6 +34,7 @@ class ContactController extends Controller
         // Jika reCAPTCHA tidak valid, kembalikan ke halaman form dengan pesan error
         // return redirect()->back()->with('error', 'Please verify that you are not a robot.');
         Session::flash('error', 'Please verify that you are not a robot.');
+        return redirect('/#contact-us');
     }
 
     // Proses data yang dikirim dari form
