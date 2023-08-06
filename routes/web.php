@@ -35,6 +35,7 @@ use App\Http\Controllers\dashboard\DashboardController;
 Route::get('/', [FrontendController::class, 'Frontend'])->name('frontend');
 Route::get('/detail-project/{slug}', [FrontendController::class, 'detailProject'])->name('forntend.detail-project');
 Route::get('/detail-article/{slug}', [FrontendController::class, 'detailArticle'])->name('forntend.detail-article');
+Route::get('/{username}', [FrontendController::class, 'detailProfile'])->name('forntend.detail-profile');
 Route::post('/contact/send', [ContactController::class, 'send'])->name('send');
 
 // Auth

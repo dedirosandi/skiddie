@@ -59,4 +59,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(FileManager::class, 'uploaded_by');
     }
+
+       public function getRouteKeyName()
+{
+    return 'username';
+}
 }

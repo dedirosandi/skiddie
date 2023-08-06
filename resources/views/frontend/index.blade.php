@@ -123,8 +123,8 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="text-header mt-3 mt-lg-0">
-                                                    {{ $team->name }} <a href=""><i
-                                                            class="bi bi-envelope"></i></a>
+                                                    <a href="{{ $team->username }}"
+                                                        style="text-decoration: none; color: #ffffff;">{{ $team->name }}</a>
                                                 </div>
                                                 <div class="underlined-custom"></div>
                                                 <div class="text-slug">

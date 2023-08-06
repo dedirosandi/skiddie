@@ -45,4 +45,15 @@ class FrontendController extends Controller
 
         return view('frontend.detail-article', compact('article', 'all_article'));
     }
+    public function detailProfile($username)
+    {
+        $projects = Project::all();
+        $username = User::where('username', $username)->first();
+
+        if (!$username) {
+            abort(404); // Tampilkan halaman 404 jika project tidak ditemukan
+        }
+
+        return view('frontend.detail-profile', compact('username','projects'));
+    }
 }
