@@ -23,7 +23,6 @@ class ArticleController extends Controller
         //
         // return view('backend.article.index', ['articles' => Article::all()]);
         return view('backend.article.index', ['articles' => Article::orderBy('created_at', 'desc')->get()]);
-
     }
 
     /**
@@ -54,8 +53,8 @@ class ArticleController extends Controller
             'thumbnail' => 'required|image',
         ]);
 
-       $validatedData['thumbnail'] = $request->file('thumbnail')->store('image/thumbnail-article');
-       $validatedData['user_id'] = Auth::user()->id;
+        $validatedData['thumbnail'] = $request->file('thumbnail')->store('image/thumbnail-article');
+        $validatedData['user_id'] = Auth::user()->id;
         Article::create($validatedData);
 
         // Redirect ke halaman yang diinginkan
@@ -75,7 +74,7 @@ class ArticleController extends Controller
         // $recentArticles = Article::latest('updated_at')->take(3)->get();
         $recentArticles = Article::latest()->take(3)->get();
 
-    return view('backend.article.show', compact('article', 'recentArticles'));
+        return view('backend.article.show', compact('article', 'recentArticles'));
     }
 
     /**
@@ -84,11 +83,11 @@ class ArticleController extends Controller
      * @param  \App\Models\backend\Article  $article
      * @return \Illuminate\Http\Response
      */
-   public function edit($slug)
-{
-    $article = Article::where('slug', $slug)->firstOrFail();
-    return view('backend.article.edit', compact('article'));
-}
+    public function edit($slug)
+    {
+        $article = Article::where('slug', $slug)->firstOrFail();
+        return view('backend.article.edit', compact('article'));
+    }
 
 
 
@@ -100,38 +99,38 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $slug)
-{
-    $rules = [
-        'title' => 'required',
-        'slug' => 'required',
-        'category' => 'required',
-        'body' => 'required',
-        'thumbnail' => 'image',
-    ];
+    {
+        $rules = [
+            'title' => 'required',
+            'slug' => 'required',
+            'category' => 'required',
+            'body' => 'required',
+            'thumbnail' => 'image',
+        ];
 
-    $validatedData = $request->validate($rules);
+        $validatedData = $request->validate($rules);
 
-    $article = Article::where('slug', $slug)->firstOrFail();
+        $article = Article::where('slug', $slug)->firstOrFail();
 
-    $article->title = $validatedData['title'];
-    $article->slug = $validatedData['slug'];
-    $article->category = $validatedData['category'];
-    $article->body = $validatedData['body'];
+        $article->title = $validatedData['title'];
+        $article->slug = $validatedData['slug'];
+        $article->category = $validatedData['category'];
+        $article->body = $validatedData['body'];
 
-    if ($request->hasFile('thumbnail')) {
-        if ($article->thumbnail) {
-            Storage::delete($article->thumbnail);
+        if ($request->hasFile('thumbnail')) {
+            if ($article->thumbnail) {
+                Storage::delete($article->thumbnail);
+            }
+            $thumbnailPath = $request->file('thumbnail')->store('image/thumbnail-article');
+            $article->thumbnail = $thumbnailPath;
         }
-        $thumbnailPath = $request->file('thumbnail')->store('image/thumbnail-article');
-        $article->thumbnail = $thumbnailPath;
-    }
- $currentDateTime = Carbon::now();
-    $article->updated_at = $currentDateTime;
-    $article->save();
+        $currentDateTime = Carbon::now();
+        $article->updated_at = $currentDateTime;
+        $article->save();
 
-    return redirect('/dashboard/article')->with('success', 'Updated successfully');
-    //  return redirect()->back()->with('success', 'Updated successfully');
-}
+        return redirect('/dashboard/article')->with('success', 'Updated successfully');
+        //  return redirect()->back()->with('success', 'Updated successfully');
+    }
 
 
     /**
@@ -140,22 +139,22 @@ class ArticleController extends Controller
      * @param  \App\Models\backend\Article  $article
      * @return \Illuminate\Http\Response
      */
-   public function destroy($slug)
-{
-    $article = Article::where('slug', $slug)->firstOrFail();
+    public function destroy($slug)
+    {
+        $article = Article::where('slug', $slug)->firstOrFail();
 
-    if ($article->thumbnail) {
-        Storage::delete($article->thumbnail);
+        if ($article->thumbnail) {
+            Storage::delete($article->thumbnail);
+        }
+
+        $article->delete();
+
+        // return redirect('/dashboard/article');
+        return redirect()->back()->with('success', 'Deleted successfully');
     }
 
-    $article->delete();
 
-    // return redirect('/dashboard/article');
-     return redirect()->back()->with('success', 'Deleted successfully');
-}
-
-
-     public function checkSlug(Request $request)
+    public function checkSlug(Request $request)
     {
         $slug = SlugService::createSlug(Article::class, 'slug', $request->title);
         return response()->json(['slug' => $slug]);

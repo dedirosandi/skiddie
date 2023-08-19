@@ -72,22 +72,24 @@
                         </div>
 
                         <div class="col-lg-3 d-none d-lg-block">
+                            <div class="difficulty mt-2 mb-3">
+                                Recent Post
+                            </div>
                             <div class="card card-custom card-sale">
-                                <div class="difficulty mt-2 mb-3">
-                                    Recent Post
-                                </div>
-                                @foreach ($all_article as $article)
-                                    <div class="row">
+                                <div class="row" style="overflow-y: scroll; height: 500px;">
+                                    @foreach ($all_article as $articles)
                                         <div class="col-12 mt-2">
-                                            <a style="text-decoration: none;color:inherit" href="{{ $article->slug }}">
+                                            <a style="text-decoration: none;color:inherit"
+                                                href="{{ $articles->slug }}">
+                                                <b>{{ Str::limit(html_entity_decode(strip_tags($articles->title)), 60) }}</b>
                                                 <img id="main-image"
-                                                    src="{{ asset('storage/' . $article->thumbnail) }}" alt=""
+                                                    src="{{ asset('storage/' . $articles->thumbnail) }}" alt=""
                                                     class="img-fluid rounded-5 shadow-2">
                                             </a>
 
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     </div>

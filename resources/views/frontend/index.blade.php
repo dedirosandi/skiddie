@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('assets-frontend/vendor/bootstrap-5/css/bootstrap.css') }}">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9332769907105662"
         crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
     <!-- jquery -->
     <script src="{{ asset('assets-frontend/vendor/jquery/jquery.js') }}"></script>
@@ -124,7 +125,9 @@
                                             <div class="col-md-8">
                                                 <div class="text-header mt-3 mt-lg-0">
                                                     <a href="{{ $team->username }}"
-                                                        style="text-decoration: none; color: #ffffff;">{{ $team->name }}</a>
+                                                        style="text-decoration: none; color: #ffffff;">{{ $team->name }}
+                                                        <i class="bi bi-box-arrow-up-right"></i>
+                                                    </a>
                                                 </div>
                                                 <div class="underlined-custom"></div>
                                                 <div class="text-slug">
@@ -207,7 +210,7 @@
                         }
                     @endphp
                     @foreach ($projects as $project)
-                        <div class="col-sm-12 col-lg-4">
+                        <div class="col-sm-6 col-lg-4">
                             <div class="card-custom">
                                 <div class="card-heading">
                                     Project Team
@@ -252,8 +255,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
                                 <div class="d-flex justify-content-end mt-4 mb-3">
                                     <a href="/detail-project/{{ $project->slug }}"
                                         class="btn btn-sm btn-project">Selengkapnya</a>
@@ -261,7 +262,6 @@
                             </div>
                         </div>
                     @endforeach
-
                 </div>
             </div>
         </section>
@@ -284,16 +284,18 @@
                                     </div>
                                     <div class="author my-3">
                                         <span>{{ $article->user->name }},
-                                            {{ $article->created_at->isoFormat('D MMMM YYYY') }}</span>
+                                            {{ $article->created_at->isoFormat('D MMMM YYYY') }} •
+                                            {{ $article->category }} </span>
                                     </div>
                                     <div class="title-artikel">
                                         <a href="detail-article/{{ $article->slug }}"
                                             style="text-decoration: none; color: inherit;">
-                                            <h3>{{ $article->title }}</h3>
+                                            <h3>{{ Str::limit(html_entity_decode(strip_tags($article->title)), 60) }}
+                                            </h3>
                                         </a>
                                     </div>
                                     <div class="content-highlight mt-3">
-                                        <p class="text-muted">{!! Str::limit(html_entity_decode(strip_tags($article->body)), 150) !!}...</p>
+                                        <p class="text-muted">{!! Str::limit(html_entity_decode(strip_tags($article->body)), 150) !!}</p>
                                     </div>
                                 </div>
                             </div>

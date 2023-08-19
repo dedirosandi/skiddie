@@ -12,8 +12,8 @@
         <div class="sidebar-menu">
             <ul id="accordion-menu">
                 <li>
-                    <a href="/dashboard"
-                        class="dropdown-toggle no-arrow {{ Request::is('dashboard') ? 'active' : '' }}">
+                    <a href="/dashboard/main"
+                        class="dropdown-toggle no-arrow {{ Request::is('dashboard/main') ? 'active' : '' }}">
                         <span class="micon bi bi-grid-fill"></span><span class="mtext">Dashboard</span>
                     </a>
                 </li>
@@ -51,6 +51,12 @@
                         <span class="micon bi bi-inbox-fill"></span><span class="mtext">Message</span>
                     </a>
                 </li>
+                {{-- <li>
+                    <a href="/dashboard/email"
+                        class="dropdown-toggle no-arrow {{ Request::is('dashboard/email*') ? 'active' : '' }}">
+                        <span class="micon bi bi-inbox-fill"></span><span class="mtext">Email</span>
+                    </a>
+                </li> --}}
             </ul>
         </div>
     </div>

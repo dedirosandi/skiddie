@@ -22,12 +22,12 @@
             <div class="email-detail">
                 <div class="email-header">
                     <div class="d-flex justify-content-between">
-                        <div class="email-sender font-weight-bold">From: {{ $message->name }} - {{ $message->whatsapp }}
+                        <div class="email-sender font-weight-bold">From: {{ $message->email }} - {{ $message->whatsapp }}
                         </div>
                         <div class="email-date">{{ $message->created_at->format('F d, Y') }}</div>
                     </div>
 
-                    <div class="email-recipient mt-3">To: <b>{{ auth()->user()->name }}</b></div>
+                    <div class="email-recipient mt-3">To: <b>Skiddie ID</b></div>
                 </div>
 
                 <div class="email-body mt-3">

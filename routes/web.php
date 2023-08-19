@@ -8,10 +8,13 @@ use App\Http\Controllers\backend\TeamController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\backend\AboutController;
 use App\Http\Controllers\backend\ArticleController;
+use App\Http\Controllers\backend\EmailController;
 use App\Http\Controllers\backend\MessageController;
 use App\Http\Controllers\backend\ProjectController;
 use App\Http\Controllers\backend\ServiceController;
 use App\Http\Controllers\frontend\ContactController;
+use App\Http\Controllers\frontend\ProfileController;
+use App\Http\Controllers\frontend\InstagramShareController;
 use App\Http\Controllers\frontend\FrontendController;
 use App\Http\Controllers\backend\FileManagerController;
 use App\Http\Controllers\dashboard\DashboardController;
@@ -35,23 +38,27 @@ use App\Http\Controllers\dashboard\DashboardController;
 Route::get('/', [FrontendController::class, 'Frontend'])->name('frontend');
 Route::get('/detail-project/{slug}', [FrontendController::class, 'detailProject'])->name('forntend.detail-project');
 Route::get('/detail-article/{slug}', [FrontendController::class, 'detailArticle'])->name('forntend.detail-article');
-Route::get('/{username}', [FrontendController::class, 'detailProfile'])->name('forntend.detail-profile');
+// Route::redirect('/{username}', '/profile/{username}');
+Route::get('/{username}', [ProfileController::class, 'detailProfile']);
 Route::post('/contact/send', [ContactController::class, 'send'])->name('send');
+Route::get('/share/instagram', [InstagramShareController::class, 'shareToInstagramStories'])->name('share.instagram');
+
 
 // Auth
-Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::get('/login/admin', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout ', [LogoutController::class, 'logout']);
 // Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 // Route::post('/register', [RegisterController::class, 'store']);
 
 // Dashboard
-Route::get('/dashboard', [MainController::class, 'index'])->middleware('auth');
+Route::get('/dashboard/main', [MainController::class, 'index'])->middleware('auth');
 Route::get('/dashboard/project/checkSlug', [ProjectController::class, 'checkSlug'])->middleware('auth');
 Route::get('/dashboard/article/checkSlug', [ArticleController::class, 'checkSlug'])->middleware('auth');
 
 // Route::resource('/dashboard/message', BackendContactController::class)->middleware('auth');
 // Route::get('', [BackendContactController::class, 'index'])->middleware('auth');
+Route::resource('/dashboard/email', EmailController::class)->middleware('auth');
 Route::resource('/dashboard/about', AboutController::class)->middleware('auth');
 Route::resource('/dashboard/team', TeamController::class)->middleware('auth');
 Route::resource('/dashboard/project', ProjectController::class)->middleware('auth');
@@ -61,3 +68,6 @@ Route::resource('/dashboard/service', ServiceController::class)->middleware('aut
 Route::resource('/dashboard/message', MessageController::class)->middleware('auth');
 Route::get('/dashboard/filemanager/{fileManager}/download', [FileManagerController::class, 'download'])
     ->name('filemanager.download')->middleware('auth');
+
+    Route::get('sitemap.xml', 'SitemapController@generateSitemap');
+    

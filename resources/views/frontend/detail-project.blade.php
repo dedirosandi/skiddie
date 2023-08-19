@@ -27,6 +27,17 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9332769907105662"
         crossorigin="anonymous"></script>
 
+    <meta name="keywords"
+        content="pengembangan aplikasi, desain aplikasi, solusi teknologi, layanan pengembangan web, pengembangan aplikasi mobile, aplikasi kustom, inovasi teknologi, keamanan aplikasi, UI/UX desain, pengalaman pengguna, manajemen proyek teknologi, integrasi sistem, optimalisasi kinerja aplikasi, pemeliharaan aplikasi, analisis kebutuhan aplikasi">
+    <meta name="robots" content="index,follow">
+    <meta property="og:image" content="{{ asset('storage/' . $project->project_images->first()->image) }}">
+    <meta name="description" content="{!! strip_tags($project->body) !!}">
+    <meta name="author"
+        content="
+    @foreach ($project->users as $user)
+                            {{ $user->name }}
+                        </span> @endforeach">
+
     <title>Skiddie ID - Dev Apps - {{ $project->name }} </title>
 </head>
 
@@ -76,79 +87,33 @@
             </div>
 
 
-            <div class="container mt-5">
+            <div class="container mt-5" id="gallery">
                 <div class="header-detail">
-                    <!--  -->
                     <div class="row">
-                    <div class="col-lg-8" data-aos="zoom-in">
-                        @php
-                                $firstImage = true;
-                            @endphp
-                            @foreach ($project->project_images as $index => $image)
-                                @if ($index == 0)
-                            <img :src="photos[activePhoto].url" :key="photos[activePhoto].id" class="w-100 main-image"
-                                alt="" />
-                                @else
-                                 <div class="d-none">
-                                        @php
-                                            $firstImage = false;
-                                        @endphp
-                                    </div>
-                                @endif
-                            @endforeach
-                       
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="row">
-                            <div class="col-3 col-lg-12 mt-2 mt-lg-0" v-for="(photo, index) in photos"
-                                :key="photo.id" data-aos="zoom-in" data-aos-delay="100">
-                                <a href="#" @click="changeActive(index)">
-                                    <img :src="photo.url" class="w-100 thumbnail-image"
-                                        :class="{ active: index == activePhoto }" alt="" />
-                                </a>
-                            </div>
+                        <div class="col-lg-8" data-aos="zoom-in">
+                            <transition name="slide-fade" mode="out-in">
+                                <img :src="photos[activePhoto].url" :key="photos[activePhoto].id"
+                                    class="w-100 main-image rounded" alt="" />
+                            </transition>
                         </div>
-                    </div>
-                </div>
-                    <!--  -->
-                    <div class="row">
-                        <div class="col-lg-8">
-                            @php
-                                $firstImage = true;
-                            @endphp
-                            @foreach ($project->project_images as $index => $image)
-                                @if ($index == 0)
-                                    <div class="row">
-                                        <div class="col-3 col-lg-12 mt-2 mt-lg-0">
-                                            <img id="main-image" src="{{ asset('storage/' . $image->image) }}"
-                                                alt="" class="img-fluid rounded-5">
-                                        </div>
-                                    </div>
-                                @else
-                                    <div class="d-none">
-                                        @php
-                                            $firstImage = false;
-                                        @endphp
-                                    </div>
-                                @endif
-                            @endforeach
-                        </div>
-
-                        <div class="col-lg-3">
+                        <div class="col-lg-2">
                             <div class="row">
-                                <div class="col-3 col-lg-12 mt-2 mt-lg-0">
-                                    @foreach ($project->project_images as $image)
-                                        <img src="{{ asset('storage/' . $image->image) }}" alt=""
-                                            class="img-fluid rounded-5 py-1 px-1 w-100"
-                                            onclick="changeMainImage('{{ asset('storage/' . $image->image) }}')"
-                                            @if ($firstImage) id="main-image"
-                                                        @php
-                                                        $firstImage = false;
-                                                         @endphp @endif>
-                                    @endforeach
+                                <div class="col-3 col-lg-12 mt-2 mt-lg-2" v-for="(photo, index) in photos"
+                                    :key="photo.id">
+                                    <a href="#" @click="changeActive(index)">
+                                        <img :src="photo.url" class="w-100 thumbnail-image rounded"
+                                            :class="{ active: index == activePhoto }" alt="" />
+                                    </a>
                                 </div>
                             </div>
                         </div>
+                        {{-- <div class="col-lg-2">
+                            <div class="row">
+                                <div class="col-3 col-lg-2 mt-2 mt-lg-2">
+                                    <button>test</button>
+                                </div>
+                            </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -188,6 +153,32 @@
     <script>
         AOS.init();
     </script>
+    <script src="{{ asset('vue/vue.js') }}"></script>
+    <script>
+        var gallery = new Vue({
+            el: "#gallery",
+            mounted() {
+                AOS.init();
+            },
+            data: {
+                activePhoto: 0,
+                photos: [
+                    @foreach ($project->project_images as $image)
+                        {
+                            id: {{ $image->id }},
+                            url: "{{ asset('storage/' . $image->image) }}",
+                        },
+                    @endforeach
+                ],
+            },
+            methods: {
+                changeActive(id) {
+                    this.activePhoto = id;
+                },
+            },
+        });
+    </script>
+
 </body>
 
 </html>

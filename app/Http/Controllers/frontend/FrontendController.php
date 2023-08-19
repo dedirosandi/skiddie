@@ -16,10 +16,10 @@ class FrontendController extends Controller
     public function Frontend()
     {
         $abouts = About::first();
-        $teams = User::all();
-        $projects = Project::all();
-        $articles = Article::all();
-        $services = Service::all();
+        $teams = User::orderBy('created_at', 'desc')->get();
+        $projects = Project::orderBy('created_at', 'desc')->get();
+        $articles = Article::orderBy('created_at', 'desc')->get();
+        $services = Service::orderBy('created_at', 'desc')->get();
 
         return view('frontend.index', compact('teams', 'projects', 'articles', 'abouts', 'services'));
     }
@@ -36,7 +36,7 @@ class FrontendController extends Controller
     }
     public function detailArticle($slug)
     {
-        $all_article = Article::latest()->take(6)->get();
+        $all_article = Article::latest()->take(10)->get();
         $article = Article::where('slug', $slug)->first();
 
         if (!$article) {
@@ -45,15 +45,5 @@ class FrontendController extends Controller
 
         return view('frontend.detail-article', compact('article', 'all_article'));
     }
-    public function detailProfile($username)
-    {
-        $projects = Project::all();
-        $username = User::where('username', $username)->first();
-
-        if (!$username) {
-            abort(404); // Tampilkan halaman 404 jika project tidak ditemukan
-        }
-
-        return view('frontend.detail-profile', compact('username','projects'));
-    }
+    
 }

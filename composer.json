@@ -14,7 +14,9 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "swiftmailer/swiftmailer": "^6.2"
+        "laravelium/sitemap": "^8.0",
+        "swiftmailer/swiftmailer": "^6.2",
+        "webklex/laravel-imap": "^5.3"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

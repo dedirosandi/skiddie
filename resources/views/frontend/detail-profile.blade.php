@@ -22,6 +22,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Main CSS -->
     <link href="{{ asset('assets-profile/css/main.css') }}" rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <meta name="robots" content="index,follow">
     <meta property="og:image" content="{{ asset('storage/' . $username->profile_picture) }}">
@@ -93,9 +94,9 @@
             <section>
                 <h2 class="ds-heading">About Me</h2>
                 <p>{{ $username->description }}</p>
-                {{-- <div class="ds-button-sec text-center">
-                    <a href="#" class="ds-button">Download Resume</a>
-                </div> --}}
+                <div class="ds-button-sec text-center">
+                    <a href="#contact-us" class="ds-button">Contact Me</a>
+                </div>
             </section>
         </div>
     </div>
@@ -185,14 +186,15 @@
                             <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 col-xxl-7">
                                 <section>
                                     <h3 class="ds-work-tilte"> {{ $project->name }} </h3>
-                                    <p>{!! substr($project->body, 0, 300) !!}...</p>
+                                    <p>{!! substr($project->body, 0, 200) !!}...</p>
                                     <a href="detail-project/{{ $project->slug }}" class="ds-button">Details</a>
                                 </section>
                             </div>
                             <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 col-xxl-5">
                                 @foreach ($project->project_images as $index => $image)
                                     @if ($index == 0)
-                                        <figure><img src="{{ asset('storage/' . $image->image) }}"></figure>
+                                        <figure><img class="rounded" src="{{ asset('storage/' . $image->image) }}">
+                                        </figure>
                                     @endif
                                 @endforeach
                             </div>
@@ -205,17 +207,64 @@
     <!--  Work -->
 
     <!--  footer -->
-    <footer class="ds-footer text-center">
-        <div class="container">
-            <section>
-                <span>Stay in touch</span>
-                <h4>Ready to talk?</h4>
-                <p>Feel free to contact us</p>
-                <a href="mailto:{{ $username->email }}" class="ds-button">Lets Talk</a>
-            </section>
-            {{-- <span class="ds-copyright">© 2022 All rights reserved. Free minimal bootstrap template by <a
-                    href="https://designstub.com/" target="_blank">Designstub</a>.</span> --}}
-        </div>
+    <footer class="ds-footer">
+        <section class="section-contact text-white" id="contact-us">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>Contact Us</h2>
+                        <p>Contact us for cooperation.</p>
+                        @if (Session::has('error'))
+                            <div class="alert alert-danger" role="alert">
+                                {{ Session::get('error') }}
+                            </div>
+                        @elseif (Session::has('success'))
+                            <div class="alert alert-success" role="alert">
+                                {{ Session::get('success') }}
+                            </div>
+                        @endif
+
+                        <form action="/contact/send" method="post">
+                            @csrf
+                            <div class="form-group">
+                                {{-- <label for="name">Name</label> --}}
+                                <input type="text" id="name" name="name" class="form-control"
+                                    placeholder="Your Name" required value="To - > {{ $username->name }}" hidden>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label for="email">Email</label>
+                                        <input type="email" name="email" id="email" class="form-control"
+                                            placeholder="Your Email" required>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="whatsapp">Whatsapp</label>
+                                        <input type="number" name="whatsapp" id="whatsapp" class="form-control"
+                                            placeholder="Your Whatsapp" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                            </div>
+                            <div class="form-group mt-2 mb-2">
+                                <div class="g-recaptcha" data-sitekey="6LdUAXEnAAAAAGEY2LkCyNK58r8kDOMLqK4ebkaN">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <h2>Our Location</h2>
+                        <p>Tangerang Selatan, Indonesia</p>
+
+                    </div>
+                </div>
+            </div>
+        </section>
     </footer>
 
 
