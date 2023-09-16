@@ -7,17 +7,18 @@ use App\Http\Controllers\backend\MainController;
 use App\Http\Controllers\backend\TeamController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\backend\AboutController;
-use App\Http\Controllers\backend\ArticleController;
 use App\Http\Controllers\backend\EmailController;
+use App\Http\Controllers\backend\ArticleController;
 use App\Http\Controllers\backend\MessageController;
 use App\Http\Controllers\backend\ProjectController;
 use App\Http\Controllers\backend\ServiceController;
 use App\Http\Controllers\frontend\ContactController;
 use App\Http\Controllers\frontend\ProfileController;
-use App\Http\Controllers\frontend\InstagramShareController;
 use App\Http\Controllers\frontend\FrontendController;
 use App\Http\Controllers\backend\FileManagerController;
 use App\Http\Controllers\dashboard\DashboardController;
+use App\Http\Controllers\backend\PasswordManagerController;
+use App\Http\Controllers\frontend\InstagramShareController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,11 +64,11 @@ Route::resource('/dashboard/about', AboutController::class)->middleware('auth');
 Route::resource('/dashboard/team', TeamController::class)->middleware('auth');
 Route::resource('/dashboard/project', ProjectController::class)->middleware('auth');
 Route::resource('/dashboard/article', ArticleController::class)->middleware('auth');
+Route::resource('/dashboard/password-manager', PasswordManagerController::class)->middleware('auth');
 Route::resource('/dashboard/filemanager', FileManagerController::class)->middleware('auth');
 Route::resource('/dashboard/service', ServiceController::class)->middleware('auth');
 Route::resource('/dashboard/message', MessageController::class)->middleware('auth');
 Route::get('/dashboard/filemanager/{fileManager}/download', [FileManagerController::class, 'download'])
     ->name('filemanager.download')->middleware('auth');
 
-    Route::get('sitemap.xml', 'SitemapController@generateSitemap');
-    
+Route::get('sitemap.xml', 'SitemapController@generateSitemap');

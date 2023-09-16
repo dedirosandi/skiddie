@@ -73,7 +73,7 @@ class AboutController extends Controller
     public function edit(About $about)
     {
         //
-         $abouts = About::first();
+        $abouts = About::first();
         return view('backend.about.edit', compact('abouts'));
     }
 

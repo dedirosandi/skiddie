@@ -46,6 +46,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="/dashboard/password-manager"
+                        class="dropdown-toggle no-arrow {{ Request::is('dashboard/password-manager*') ? 'active' : '' }}">
+                        <span class="micon bi bi-key-fill"></span><span class="mtext">Password Manager</span>
+                    </a>
+                </li>
+                <li>
                     <a href="/dashboard/message"
                         class="dropdown-toggle no-arrow {{ Request::is('dashboard/message*') ? 'active' : '' }}">
                         <span class="micon bi bi-inbox-fill"></span><span class="mtext">Message</span>
